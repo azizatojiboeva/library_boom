@@ -1,8 +1,9 @@
 package uz.elmurodov.spring_boot.entity.organization;
 
-import lombok.CustomLog;
 import lombok.Getter;
 import lombok.Setter;
+import uz.elmurodov.spring_boot.entity.Auditable;
+import uz.elmurodov.spring_boot.entity.BaseEntity;
 
 import javax.persistence.*;
 
@@ -10,12 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-public class Organization {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private Long id;
+public class Organization extends Auditable {
 
     @Column(nullable = false, length = 100)
     private String name;

@@ -5,25 +5,22 @@ import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 import uz.elmurodov.spring_boot.dto.organization.OrganizationCreateDto;
 import uz.elmurodov.spring_boot.dto.organization.OrganizationDto;
+import uz.elmurodov.spring_boot.dto.organization.OrganizationUpdateDto;
 import uz.elmurodov.spring_boot.entity.organization.Organization;
-
-import java.util.List;
 
 @Component
 @Mapper(componentModel = "spring")
-public interface OrganizationMapper {
+public interface OrganizationMapper extends BaseMapper<
+        Organization,
+        OrganizationDto,
+        OrganizationCreateDto,
+        OrganizationUpdateDto> {
 
-    /**
-     * need to ignore logo from target
-     *
-     * @param dto
-     * @return
-     */
+    @Override
     @Mapping(target = "logo", ignore = true)
-    Organization fromCreateDto(OrganizationCreateDto dto);
+    Organization fromCreateDto(OrganizationCreateDto organizationCreateDto);
 
-    List<OrganizationDto> toDto(List<Organization> organizations);
-
-    OrganizationDto toDto(Organization organizations);
-
+    @Override
+    @Mapping(target = "logo", ignore = true)
+    Organization fromUpdateDto(OrganizationUpdateDto organizationUpdateDto);
 }

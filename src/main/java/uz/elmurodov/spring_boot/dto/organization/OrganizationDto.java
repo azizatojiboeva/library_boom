@@ -3,11 +3,11 @@ package uz.elmurodov.spring_boot.dto.organization;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import uz.elmurodov.spring_boot.dto.BaseGenericDto;
+import uz.elmurodov.spring_boot.dto.GenericDto;
 
 @Getter
 @Setter
-public class OrganizationDto extends BaseGenericDto {
+public class OrganizationDto extends GenericDto {
 
     private String name;
     private String logo;

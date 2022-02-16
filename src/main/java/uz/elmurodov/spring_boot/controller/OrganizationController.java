@@ -1,11 +1,13 @@
 package uz.elmurodov.spring_boot.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import uz.elmurodov.spring_boot.criteria.GenericCriteria;
 import uz.elmurodov.spring_boot.dto.organization.OrganizationCreateDto;
 import uz.elmurodov.spring_boot.services.organization.OrganizationService;
 
@@ -14,7 +16,8 @@ import uz.elmurodov.spring_boot.services.organization.OrganizationService;
 public class OrganizationController extends AbstractController<OrganizationService> {
 
 
-    protected OrganizationController(OrganizationService service) {
+    @Autowired
+    public OrganizationController(OrganizationService service) {
         super(service);
     }
 
@@ -30,13 +33,15 @@ public class OrganizationController extends AbstractController<OrganizationServi
     }
 
 
-    @RequestMapping(value = "delete/{id}/", method = RequestMethod.GET)
-    public String deletePage(@PathVariable Long id) {
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
+    public String deletePage(Model model, @PathVariable(name = "id") Long id) {
+        model.addAttribute("organization", service.get(id));
         return "organization/delete";
     }
 
-    @RequestMapping(value = "delete/", method = RequestMethod.DELETE)
-    public String delete() {
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.POST)
+    public String delete(@PathVariable(name = "id") Long id) {
+        service.delete(id);
         return "redirect:/";
     }
 
@@ -58,7 +63,7 @@ public class OrganizationController extends AbstractController<OrganizationServi
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String listPage(Model model) {
-        model.addAttribute("organizations", service.getAll());
+        model.addAttribute("organizations", service.getAll(new GenericCriteria()));
         return "organization/list";
     }
 }

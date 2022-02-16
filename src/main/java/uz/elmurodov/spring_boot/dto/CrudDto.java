@@ -1,4 +1,4 @@
 package uz.elmurodov.spring_boot.dto;
 
-public interface BaseDto {
+public interface CrudDto {
 }
