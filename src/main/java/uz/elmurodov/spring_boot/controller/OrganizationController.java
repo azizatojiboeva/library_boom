@@ -57,7 +57,8 @@ public class OrganizationController extends AbstractController<OrganizationServi
     }
 
     @RequestMapping("detail/{id}/")
-    public String detail(@PathVariable Long id) {
+    public String detail(Model model, @PathVariable(name = "id") Long id) {
+        model.addAttribute("organization", service.get(id));
         return "organization/detail";
     }
 

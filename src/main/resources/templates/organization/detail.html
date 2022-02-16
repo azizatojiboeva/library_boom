@@ -7,7 +7,20 @@
     <section th:include="fragments.html :: navbar"></section>
 </header>
 <main>
-    <h1>Details Organization Page</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <p class="h4" th:text="${organization.name}"></p>
+                <p class="h4" th:text="${organization.email}"></p>
+                <p class="h4" th:text="${organization.code}"></p>
+                <img class="mr-3" width="120" height="180" th:src="@{${organization.logo}}"
+                     th:alt="${organization.name}"/>
+                <form method="get" th:action="@{/organization/list}">
+                    <button type="submit" class="btn btn-warning">Back</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </main>
 <footer>
     <section th:include="fragments.html :: js"></section>

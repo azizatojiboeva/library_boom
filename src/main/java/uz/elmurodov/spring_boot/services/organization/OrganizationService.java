@@ -15,4 +15,5 @@ public interface OrganizationService extends GenericCrudService<
         GenericCriteria,
         Long> {
 
+
 }
