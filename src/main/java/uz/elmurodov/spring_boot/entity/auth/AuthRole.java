@@ -2,6 +2,7 @@ package uz.elmurodov.spring_boot.entity.auth;
 
 import lombok.Getter;
 import lombok.Setter;
+import uz.elmurodov.spring_boot.entity.Auditable;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,11 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class AuthRole {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class AuthRole extends Auditable {
 
     @Column(nullable = false)
     private String name;
@@ -28,4 +25,5 @@ public class AuthRole {
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "permission_id"))
     private List<AuthPermission> permissions;
+
 }

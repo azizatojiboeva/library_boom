@@ -1,14 +1,16 @@
 package uz.elmurodov.spring_boot.entity.project;
 
+import lombok.Getter;
+import lombok.Setter;
+import uz.elmurodov.spring_boot.entity.Auditable;
+
 import javax.persistence.*;
 
 @Entity
+@Setter
+@Getter
 @Table(name = "project_member", schema = "etm_b4")
-public class ProjectMember {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class ProjectMember extends Auditable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id")
@@ -20,35 +22,4 @@ public class ProjectMember {
     @Column(name = "is_lead")
     private Boolean isLead;
 
-    public Boolean getIsLead() {
-        return isLead;
-    }
-
-    public void setIsLead(Boolean isLead) {
-        this.isLead = isLead;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }
