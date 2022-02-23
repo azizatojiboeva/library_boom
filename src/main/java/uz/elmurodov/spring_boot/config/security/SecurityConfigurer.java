@@ -63,7 +63,6 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                                 .clearAuthentication(true)
                                 .deleteCookies("JSESSIONID", "remember-me")
                 );
-        ;
     }
 
     @Override

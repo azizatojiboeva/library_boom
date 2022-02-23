@@ -20,7 +20,7 @@ public class OrganizationController extends AbstractController<OrganizationServi
 
     @Autowired
     public OrganizationController(OrganizationService service) {
-        super(service);
+            super(service);
     }
 
     @RequestMapping(value = "create/", method = RequestMethod.GET)
