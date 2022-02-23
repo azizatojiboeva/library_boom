@@ -1,4 +1,4 @@
-package uz.elmurodov.spring_boot.services.organization.file;
+package uz.elmurodov.spring_boot.services.file;
 
 
 import org.springframework.core.io.FileSystemResource;

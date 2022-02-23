@@ -1,4 +1,4 @@
-package uz.elmurodov.spring_boot.utils.validators.organization;
+package uz.elmurodov.spring_boot.utils.validators;
 
 import uz.elmurodov.spring_boot.exceptions.ValidationException;
 import uz.elmurodov.spring_boot.utils.BaseUtils;

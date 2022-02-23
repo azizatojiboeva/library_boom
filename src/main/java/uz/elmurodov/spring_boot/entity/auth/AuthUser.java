@@ -35,7 +35,6 @@ public class AuthUser extends Auditable {
     @Column(nullable = false)
     private UUID code;
 
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id", nullable = false)
     private AuthRole role;

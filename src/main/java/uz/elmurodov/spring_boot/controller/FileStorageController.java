@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import uz.elmurodov.spring_boot.services.organization.file.FileStorageService;
+import uz.elmurodov.spring_boot.services.file.FileStorageService;
 
 @Controller
 public class FileStorageController {

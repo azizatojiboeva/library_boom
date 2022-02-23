@@ -24,7 +24,6 @@ public class Organization extends Auditable {
 
     private String location;
 
-
     private Long owner;
 
 

@@ -14,11 +14,12 @@ import javax.persistence.*;
 @Entity
 public class TaskMember extends Auditable {
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "task_id", nullable = false)
-    private Task task;
+    @Column(name = "column_id", nullable = false)
+    private Long task_id;
 
     @Column(name = "user_id")
     private Long userId;
+
+
 
 }

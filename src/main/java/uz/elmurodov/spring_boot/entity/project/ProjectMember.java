@@ -12,9 +12,9 @@ import javax.persistence.*;
 @Table(name = "project_member", schema = "etm_b4")
 public class ProjectMember extends Auditable {
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "project_id", nullable = false)
-    private Project project;
+
+    @Column(name = "project_id",nullable = false)
+    private Long project;
 
     @Column(name = "user_id")
     private Long userId;
