@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  */
 @Setter
 @Getter
-@Builder
+@Builder(builderMethodName = "childBuilder")
 public class TaskDto extends GenericDto {
 
     private String name;
