@@ -10,7 +10,7 @@
             jdbc:postgresql://localhost:5432/spring_boot_projects?currentSchema=etm_b4
         </property>
         <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">1309</property>
+        <property name="hibernate.connection.password">777</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
     </session-factory>
 </hibernate-configuration>

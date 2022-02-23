@@ -2,13 +2,11 @@ package uz.elmurodov.spring_boot.services.organization.file;
 
 
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.PathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-import uz.elmurodov.spring_boot.utils.FileUploadUtils;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
