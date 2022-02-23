@@ -1,9 +1,8 @@
-package uz.elmurodov.spring_boot.services;
+package uz.elmurodov.spring_boot.services.base;
 
 import uz.elmurodov.spring_boot.criteria.GenericCriteria;
-import uz.elmurodov.spring_boot.dto.Dto;
-import uz.elmurodov.spring_boot.dto.GenericDto;
-import uz.elmurodov.spring_boot.entity.BaseEntity;
+import uz.elmurodov.spring_boot.dto.base.Dto;
+import uz.elmurodov.spring_boot.dto.base.GenericDto;
 
 import java.io.Serializable;
 

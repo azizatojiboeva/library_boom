@@ -6,20 +6,22 @@ import uz.elmurodov.spring_boot.entity.base.Auditable;
 
 import javax.persistence.*;
 
-@Entity
+/**
+ * @Author Aziza Tojiboyeva
+ */
 @Setter
 @Getter
-@Table(name = "project_member", schema = "etm_b4")
-public class ProjectMember extends Auditable {
+@Entity
+public class ProjectColumn extends Auditable {
+    @Column(nullable = false, unique = true)
+    private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 
-    @Column(name = "user_id")
-    private Long userId;
+    private int order;
 
-    @Column(name = "is_lead")
-    private Boolean isLead;
+    private boolean active;
 
 }

@@ -3,7 +3,7 @@ package uz.elmurodov.spring_boot.dto.organization;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import uz.elmurodov.spring_boot.dto.GenericDto;
+import uz.elmurodov.spring_boot.dto.base.GenericDto;
 
 @Getter
 @Setter
