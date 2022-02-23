@@ -1,4 +1,4 @@
-package uz.elmurodov.spring_boot.entity;
+package uz.elmurodov.spring_boot.entity.base;
 
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.context.SecurityContextHolder;

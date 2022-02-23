@@ -2,11 +2,10 @@ package uz.elmurodov.spring_boot.entity.project;
 
 import lombok.Getter;
 import lombok.Setter;
-import uz.elmurodov.spring_boot.entity.Auditable;
+import uz.elmurodov.spring_boot.entity.base.Auditable;
 import uz.elmurodov.spring_boot.entity.organization.Organization;
 
 import javax.persistence.*;
-import java.time.Instant;
 
 @Entity
 @Setter
@@ -28,7 +27,5 @@ public class Project extends Auditable {
 
     @Column(name = "closed")
     private Boolean closed;
-
-
 
 }

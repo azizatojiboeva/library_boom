@@ -1,4 +1,4 @@
-package uz.elmurodov.spring_boot.reposiroty;
+package uz.elmurodov.spring_boot.reposiroty.base;
 
 
 import org.springframework.data.repository.NoRepositoryBean;

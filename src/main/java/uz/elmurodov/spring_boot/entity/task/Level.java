@@ -2,7 +2,6 @@ package uz.elmurodov.spring_boot.entity.task;
 
 import lombok.Getter;
 import lombok.Setter;
-import uz.elmurodov.spring_boot.entity.Auditable;
 
 import javax.persistence.*;
 

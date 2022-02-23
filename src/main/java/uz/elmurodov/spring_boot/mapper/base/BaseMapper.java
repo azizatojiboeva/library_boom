@@ -1,4 +1,4 @@
-package uz.elmurodov.spring_boot.mapper;
+package uz.elmurodov.spring_boot.mapper.base;
 
 import java.util.List;
 

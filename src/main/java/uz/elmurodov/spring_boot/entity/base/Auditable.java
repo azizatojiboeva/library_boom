@@ -1,4 +1,4 @@
-package uz.elmurodov.spring_boot.entity;
+package uz.elmurodov.spring_boot.entity.base;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -2,7 +2,7 @@ package uz.elmurodov.spring_boot.entity.comment;
 
 import lombok.Getter;
 import lombok.Setter;
-import uz.elmurodov.spring_boot.entity.Auditable;
+import uz.elmurodov.spring_boot.entity.base.Auditable;
 import uz.elmurodov.spring_boot.entity.task.Task;
 
 import javax.persistence.*;

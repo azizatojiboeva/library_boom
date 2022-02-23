@@ -1,4 +1,4 @@
-package uz.elmurodov.spring_boot.dto;
+package uz.elmurodov.spring_boot.dto.base;
 
 import lombok.*;
 

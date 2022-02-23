@@ -7,6 +7,7 @@ import uz.elmurodov.spring_boot.dto.organization.OrganizationCreateDto;
 import uz.elmurodov.spring_boot.dto.organization.OrganizationDto;
 import uz.elmurodov.spring_boot.dto.organization.OrganizationUpdateDto;
 import uz.elmurodov.spring_boot.entity.organization.Organization;
+import uz.elmurodov.spring_boot.mapper.base.BaseMapper;
 
 @Component
 @Mapper(componentModel = "spring")
