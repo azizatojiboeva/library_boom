@@ -6,7 +6,7 @@ import uz.elmurodov.spring_boot.dto.project.ProjectCreateDto;
 import uz.elmurodov.spring_boot.dto.project.ProjectDto;
 import uz.elmurodov.spring_boot.dto.project.ProjectUpdateDto;
 import uz.elmurodov.spring_boot.entity.project.Project;
-import uz.elmurodov.spring_boot.mapper.BaseMapper;
+import uz.elmurodov.spring_boot.mapper.base.BaseMapper;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class ProjectMapper implements BaseMapper<
         Project,
         ProjectDto,
         ProjectCreateDto,
-        ProjectUpdateDto> {
+        ProjectUpdateDto>, uz.elmurodov.spring_boot.mapper.base.Mapper {
 
     @Override
     public ProjectDto toDto(Project project) {

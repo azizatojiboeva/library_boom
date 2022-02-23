@@ -4,7 +4,7 @@ import uz.elmurodov.spring_boot.criteria.GenericCriteria;
 import uz.elmurodov.spring_boot.dto.project.ProjectCreateDto;
 import uz.elmurodov.spring_boot.dto.project.ProjectDto;
 import uz.elmurodov.spring_boot.dto.project.ProjectUpdateDto;
-import uz.elmurodov.spring_boot.services.GenericCrudService;
+import uz.elmurodov.spring_boot.services.base.GenericCrudService;
 
 /**
  * @Author Aziza Tojiboyeva

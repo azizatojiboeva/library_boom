@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 import uz.elmurodov.spring_boot.dto.Dto;
+import uz.elmurodov.spring_boot.dto.base.Dto;
 
 /**
  * @Author Aziza Tojiboyeva
@@ -12,7 +13,7 @@ import uz.elmurodov.spring_boot.dto.Dto;
 @Setter
 @Getter
 @Builder
-public class ProjectCreateDto implements Dto {
+public class ProjectCreateDto implements Dto, Dto {
     private String name;
     private MultipartFile tz;
 

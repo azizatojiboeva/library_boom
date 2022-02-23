@@ -8,7 +8,7 @@ import uz.elmurodov.spring_boot.dto.project.ProjectDto;
 import uz.elmurodov.spring_boot.dto.project.ProjectUpdateDto;
 import uz.elmurodov.spring_boot.mapper.project.ProjectMapper;
 import uz.elmurodov.spring_boot.reposiroty.project.ProjectRepository;
-import uz.elmurodov.spring_boot.services.AbstractService;
+import uz.elmurodov.spring_boot.services.base.AbstractService;
 import uz.elmurodov.spring_boot.utils.BaseUtils;
 import uz.elmurodov.spring_boot.utils.validators.project.ProjectValidator;
 import java.util.List;
