@@ -1,6 +1,7 @@
 package uz.elmurodov.spring_boot.services.organization;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import uz.elmurodov.spring_boot.criteria.GenericCriteria;
@@ -8,24 +9,25 @@ import uz.elmurodov.spring_boot.dto.organization.OrganizationCreateDto;
 import uz.elmurodov.spring_boot.dto.organization.OrganizationDto;
 import uz.elmurodov.spring_boot.dto.organization.OrganizationUpdateDto;
 import uz.elmurodov.spring_boot.entity.organization.Organization;
-import uz.elmurodov.spring_boot.mapper.OrganizationMapper;
-import uz.elmurodov.spring_boot.reposiroty.base.OrganizationRepository;
-import uz.elmurodov.spring_boot.services.base.AbstractService;
-import uz.elmurodov.spring_boot.services.organization.file.FileStorageService;
+import uz.elmurodov.spring_boot.mapper.organization.OrganizationMapper;
+import uz.elmurodov.spring_boot.reposiroty.organization.OrganizationRepository;
+import uz.elmurodov.spring_boot.services.AbstractService;
+import uz.elmurodov.spring_boot.services.file.FileStorageService;
 import uz.elmurodov.spring_boot.utils.BaseUtils;
 import uz.elmurodov.spring_boot.utils.validators.organization.OrganizationValidator;
 
 import java.util.List;
 
 @Service
-public class OrganizationServiceImpl extends AbstractService<OrganizationRepository, OrganizationMapper, OrganizationValidator>
+public class OrganizationServiceImpl extends
+        AbstractService<OrganizationRepository, OrganizationMapper, OrganizationValidator>
         implements OrganizationService {
 
     private final FileStorageService fileStorageService;
 
     @Autowired
     protected OrganizationServiceImpl(OrganizationRepository repository,
-                                      OrganizationMapper mapper,
+                                      @Qualifier("organizationMapper") OrganizationMapper mapper,
                                       OrganizationValidator validator,
                                       BaseUtils baseUtils,
                                       FileStorageService fileStorageService) {

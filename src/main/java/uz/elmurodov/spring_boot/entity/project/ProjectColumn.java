@@ -16,9 +16,8 @@ public class ProjectColumn extends Auditable {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "project_id", nullable = false)
-    private Project project;
+    @Column(name = "project_id", nullable = false)
+    private Long project_id;
 
     private int order;
 
