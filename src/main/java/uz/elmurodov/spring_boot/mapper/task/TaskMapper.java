@@ -6,7 +6,8 @@ import uz.elmurodov.spring_boot.dto.task.TaskCreateDto;
 import uz.elmurodov.spring_boot.dto.task.TaskDto;
 import uz.elmurodov.spring_boot.dto.task.TaskUpdateDto;
 import uz.elmurodov.spring_boot.entity.task.Task;
-import uz.elmurodov.spring_boot.mapper.BaseMapper;
+import uz.elmurodov.spring_boot.mapper.base.BaseMapper;
+
 import java.util.List;
 
 /**

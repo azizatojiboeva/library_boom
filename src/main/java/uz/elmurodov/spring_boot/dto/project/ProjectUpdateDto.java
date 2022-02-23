@@ -10,7 +10,6 @@ import uz.elmurodov.spring_boot.dto.base.GenericDto;
  */
 @Setter
 @Getter
-@Builder
 public class ProjectUpdateDto extends GenericDto {
     private String name;
 
