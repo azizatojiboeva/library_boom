@@ -17,17 +17,18 @@ import uz.elmurodov.spring_boot.utils.validators.organization.OrganizationValida
 
 import java.util.List;
 
-import static uz.elmurodov.spring_boot.utils.FileUploadUtils.UPLOAD_DIRECTORY;
-
 @Service
 public class OrganizationServiceImpl extends AbstractService<OrganizationRepository, OrganizationMapper, OrganizationValidator>
         implements OrganizationService {
 
     private final FileStorageService fileStorageService;
 
-
     @Autowired
-    protected OrganizationServiceImpl(OrganizationRepository repository, OrganizationMapper mapper, OrganizationValidator validator, BaseUtils baseUtils, FileStorageService fileStorageService) {
+    protected OrganizationServiceImpl(OrganizationRepository repository,
+                                      OrganizationMapper mapper,
+                                      OrganizationValidator validator,
+                                      BaseUtils baseUtils,
+                                      FileStorageService fileStorageService) {
         super(repository, mapper, validator, baseUtils);
         this.fileStorageService = fileStorageService;
     }
@@ -50,6 +51,8 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
 
     @Override
     public Void update(OrganizationUpdateDto updateDto) {
+        Organization organization = mapper.fromUpdateDto(updateDto);
+        repository.save(organization);
         return null;
     }
 
@@ -61,7 +64,7 @@ public class OrganizationServiceImpl extends AbstractService<OrganizationReposit
     @Override
     public OrganizationDto get(Long id) {
         Organization organization = repository.findById(id).orElseThrow(() -> {
-            throw new RuntimeException("Topilmadi");
+            throw new RuntimeException("Not Found");
         });
         OrganizationDto dto = mapper.toDto(organization);
         return dto;
