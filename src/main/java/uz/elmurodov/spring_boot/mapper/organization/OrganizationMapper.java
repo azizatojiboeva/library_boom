@@ -9,8 +9,9 @@ import uz.elmurodov.spring_boot.dto.organization.OrganizationUpdateDto;
 import uz.elmurodov.spring_boot.entity.organization.Organization;
 import uz.elmurodov.spring_boot.mapper.base.BaseMapper;
 
-@Component(value = "organizationMapper")
+
 @Mapper(componentModel = "spring")
+@Component(value = "organizationMapper")
 public interface OrganizationMapper extends BaseMapper<
         Organization,
         OrganizationDto,
@@ -25,3 +26,4 @@ public interface OrganizationMapper extends BaseMapper<
     @Mapping(target = "logo", ignore = true)
     Organization fromUpdateDto(OrganizationUpdateDto organizationUpdateDto);
 }
+
