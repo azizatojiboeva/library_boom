@@ -10,20 +10,14 @@ import uz.elmurodov.spring_boot.dto.base.GenericDto;
  */
 @Setter
 @Getter
-@Builder
 public class ProjectDto extends GenericDto {
     private String name;
     private Long organizationId;
     private boolean closed;
 
+    @Builder(builderMethodName = "childBuilder")
     public ProjectDto(Long id, String name, Long organizationId, boolean closed) {
         super(id);
-        this.name = name;
-        this.organizationId = organizationId;
-        this.closed = closed;
-    }
-
-    public ProjectDto(String name, Long organizationId, boolean closed) {
         this.name = name;
         this.organizationId = organizationId;
         this.closed = closed;

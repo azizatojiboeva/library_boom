@@ -11,6 +11,7 @@ import uz.elmurodov.spring_boot.reposiroty.project.ProjectRepository;
 import uz.elmurodov.spring_boot.services.base.AbstractService;
 import uz.elmurodov.spring_boot.utils.BaseUtils;
 import uz.elmurodov.spring_boot.utils.validators.project.ProjectValidator;
+
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ import java.util.List;
 public class ProjectServiceImpl extends AbstractService<
         ProjectRepository,
         ProjectMapper,
-        ProjectValidator> implements ProjectService{
+        ProjectValidator> implements ProjectService {
 
     @Autowired
     protected ProjectServiceImpl(

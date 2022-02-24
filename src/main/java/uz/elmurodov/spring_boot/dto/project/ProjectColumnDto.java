@@ -10,7 +10,8 @@ import uz.elmurodov.spring_boot.dto.base.GenericDto;
  */
 @Setter
 @Getter
-public class ProjectUpdateDto extends GenericDto {
+@Builder(builderMethodName = "childBuilder")
+public class ProjectColumnDto extends GenericDto {
     private String name;
-
+    private Long project_id;
 }

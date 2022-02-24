@@ -15,29 +15,22 @@ import java.util.List;
  */
 @Component
 @Mapper(componentModel = "spring")
-public class ProjectMapper implements BaseMapper<
+public interface ProjectMapper extends BaseMapper<
         Project,
         ProjectDto,
         ProjectCreateDto,
-        ProjectUpdateDto>, uz.elmurodov.spring_boot.mapper.base.Mapper {
+        ProjectUpdateDto> {
 
     @Override
-    public ProjectDto toDto(Project project) {
-        return null;
-    }
+    public ProjectDto toDto(Project project) ;
 
     @Override
-    public List<ProjectDto> toDto(List<Project> e) {
-        return null;
-    }
+    public List<ProjectDto> toDto(List<Project> e) ;
 
     @Override
-    public Project fromCreateDto(ProjectCreateDto projectCreateDto) {
-        return null;
-    }
+    public Project fromCreateDto(ProjectCreateDto projectCreateDto) ;
+
 
     @Override
-    public Project fromUpdateDto(ProjectUpdateDto projectUpdateDto) {
-        return null;
-    }
+    public Project fromUpdateDto(ProjectUpdateDto projectUpdateDto) ;
 }

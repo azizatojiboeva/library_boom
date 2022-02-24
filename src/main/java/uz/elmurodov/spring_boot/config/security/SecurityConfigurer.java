@@ -25,7 +25,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     };
 
     public static final String[] WHITE_LIST_RESOURCES = {
-            "/css/**", "/webjars/**", "/js/**", "/error"
+            "/css/**", "/webjars/**", "/js/**", "/error", "/images/**"
     };
 
     private final PasswordEncoder passwordEncoder;
@@ -53,9 +53,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 )
                 .rememberMe(httpSecurityRememberMeConfigurer -> {
                     httpSecurityRememberMeConfigurer
-                            .key("!@#!@#W#ERFGSD$T##$%^%^$%$^%^@#$@#$WERREFG$#%")
-                            .rememberMeParameter("remember-me")
-                            .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(40));
+                            .rememberMeParameter("remember-me");
                 })
                 .logout(httpSecurityLogoutConfigurer ->
                         httpSecurityLogoutConfigurer
@@ -65,7 +63,6 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                                 .clearAuthentication(true)
                                 .deleteCookies("JSESSIONID", "remember-me")
                 );
-        ;
     }
 
     @Override

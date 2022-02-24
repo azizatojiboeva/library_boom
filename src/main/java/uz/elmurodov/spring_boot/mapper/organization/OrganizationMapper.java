@@ -1,4 +1,4 @@
-package uz.elmurodov.spring_boot.mapper;
+package uz.elmurodov.spring_boot.mapper.organization;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -9,13 +9,14 @@ import uz.elmurodov.spring_boot.dto.organization.OrganizationUpdateDto;
 import uz.elmurodov.spring_boot.entity.organization.Organization;
 import uz.elmurodov.spring_boot.mapper.base.BaseMapper;
 
-@Component
+
 @Mapper(componentModel = "spring")
+@Component(value = "organizationMapper")
 public interface OrganizationMapper extends BaseMapper<
         Organization,
         OrganizationDto,
         OrganizationCreateDto,
-        OrganizationUpdateDto> {
+        OrganizationUpdateDto>  {
 
     @Override
     @Mapping(target = "logo", ignore = true)
@@ -25,3 +26,4 @@ public interface OrganizationMapper extends BaseMapper<
     @Mapping(target = "logo", ignore = true)
     Organization fromUpdateDto(OrganizationUpdateDto organizationUpdateDto);
 }
+

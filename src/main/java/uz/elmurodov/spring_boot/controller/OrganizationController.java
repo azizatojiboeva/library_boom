@@ -1,6 +1,7 @@
 package uz.elmurodov.spring_boot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,8 +20,8 @@ public class OrganizationController extends AbstractController<OrganizationServi
 
 
     @Autowired
-    public OrganizationController(OrganizationService service) {
-        super(service);
+    public OrganizationController(@Qualifier("organizationServiceImpl") OrganizationService service) {
+            super(service);
     }
 
     @RequestMapping(value = "create/", method = RequestMethod.GET)

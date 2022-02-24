@@ -1,12 +1,14 @@
 package uz.elmurodov.spring_boot.mapper.task;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 import uz.elmurodov.spring_boot.dto.task.TaskCreateDto;
 import uz.elmurodov.spring_boot.dto.task.TaskDto;
 import uz.elmurodov.spring_boot.dto.task.TaskUpdateDto;
 import uz.elmurodov.spring_boot.entity.task.Task;
-import uz.elmurodov.spring_boot.mapper.BaseMapper;
+import uz.elmurodov.spring_boot.mapper.base.BaseMapper;
+
 import java.util.List;
 
 /**
@@ -14,7 +16,7 @@ import java.util.List;
  */
 @Mapper(componentModel = "spring")
 @Component
-public class TaskMapper implements BaseMapper<
+public interface TaskMapper extends BaseMapper<
         Task,
         TaskDto,
         TaskCreateDto,
@@ -22,22 +24,22 @@ public class TaskMapper implements BaseMapper<
         > {
 
     @Override
-    public TaskDto toDto(Task task) {
-        return null;
-    }
+    @Mapping(target = "level",ignore = true)
+    @Mapping(target = "priority",ignore = true)
+    public TaskDto toDto(Task task);
 
     @Override
-    public List<TaskDto> toDto(List<Task> e) {
-        return null;
-    }
+    @Mapping(target = "priority",ignore = true)
+    @Mapping(target = "level",ignore = true)
+    public List<TaskDto> toDto(List<Task> e);
 
     @Override
-    public Task fromCreateDto(TaskCreateDto taskCreateDto) {
-        return null;
-    }
+    @Mapping(target = "priority",ignore = true)
+    @Mapping(target = "level",ignore = true)
+    public Task fromCreateDto(TaskCreateDto taskCreateDto);
 
     @Override
-    public Task fromUpdateDto(TaskUpdateDto taskUpdateDto) {
-        return null;
-    }
+    @Mapping(target = "priority",ignore = true)
+    @Mapping(target = "level",ignore = true)
+    public Task fromUpdateDto(TaskUpdateDto taskUpdateDto);
 }
