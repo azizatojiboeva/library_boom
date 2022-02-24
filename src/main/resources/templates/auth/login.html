@@ -166,8 +166,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Red+Hat+Display&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Red+Hat+Display&display=swap"
+            rel="stylesheet">
 
     <!-- font awesome link -->
 
@@ -175,15 +175,20 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="goBack" id="link">
-            <a href="#">Back</a>
-            <a href="#">Register</a>
-        </div>
-        <div class="login-text">
-            <h3>Login</h3>
-            <p>Please login using account detail bellow.</p>
-        </div>
+<div class="container">
+
+
+    <div class="goBack" id="link">
+        <a href="#">Back</a>
+        <a href="#">Register</a>
+    </div>
+    <div class="login-text">
+        <h3>Login</h3>
+        <p>Please login using account detail bellow.</p>
+    </div>
+
+
+    <form th:action="@{/auth/index/}", method="post">
 
         <div class="login-input">
             <input type="text" placeholder="Email Address">
@@ -191,45 +196,45 @@
                 <i class="fas"></i>
                 <input type="password" placeholder="Password" class="InputPassword">
             </div>
-           
+
             <div class="forgot">
                 <p>Forgot your password?</p>
-
                 <div>
                     <label>Remember Me</label>
-                    <input type="checkbox"> 
+                    <input type="checkbox">
                 </div>
-               
             </div>
-           
         </div>
 
         <div class="login-button">
+<!--            <input type="submit">Sign In</input>-->
             <button type="submit">Sign In</button>
+<!--            <button>Sign In</button>-->
             <p>Don’t have an Account?Create account</p>
         </div>
-    </div>
+    </form>
+</div>
 
-    <script>
-        const passwordEye = document.querySelector(".fas")
-        const InputPassword = document.querySelector(".InputPassword")
-        
-        passwordEye.addEventListener('click', function() {
-            passwordEye.classList.toggle("fa-eye-slash")
-            passwordEye.classList.add("fa-eye")
-        
-            if (passwordEye.classList.value != "fas fa-eye fa-eye-slash") {
-                console.log("fa-eye")
-                InputPassword.type = "text"
-                 
-            } else {
-                InputPassword.type = "password"
-            }
-                      
-        })
-        passwordEye.classList.add("fa-eye-slash")
-      
-    </script>
+<script>
+    const passwordEye = document.querySelector(".fas")
+    const InputPassword = document.querySelector(".InputPassword")
+
+    passwordEye.addEventListener('click', function () {
+        passwordEye.classList.toggle("fa-eye-slash")
+        passwordEye.classList.add("fa-eye")
+
+        if (passwordEye.classList.value != "fas fa-eye fa-eye-slash") {
+            console.log("fa-eye")
+            InputPassword.type = "text"
+
+        } else {
+            InputPassword.type = "password"
+        }
+
+    })
+    passwordEye.classList.add("fa-eye-slash")
+
+</script>
 </body>
 
 </html>

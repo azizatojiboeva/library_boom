@@ -11,9 +11,9 @@ import java.util.UUID;
 /**
  * @Author Aziza Tojiboyeva
  */
-@Entity
 @Setter
 @Getter
+@Entity
 public class AuthUser extends Auditable {
 
     @Column(unique = true, nullable = false)
@@ -25,12 +25,12 @@ public class AuthUser extends Auditable {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(columnDefinition = "default false")
+//    @Column(columnDefinition = "default false")
     private boolean isSuperUser;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "organization_id", nullable = false)
-    private Organization organizationId;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "organization_id", nullable = true)
+    private Long organizationId;
 
     @Column(nullable = false)
     private UUID code;
