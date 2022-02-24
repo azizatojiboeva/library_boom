@@ -16,7 +16,7 @@ public interface OrganizationMapper extends BaseMapper<
         Organization,
         OrganizationDto,
         OrganizationCreateDto,
-        OrganizationUpdateDto>  {
+        OrganizationUpdateDto> , uz.elmurodov.spring_boot.mapper.base.Mapper {
 
     @Override
     @Mapping(target = "logo", ignore = true)
