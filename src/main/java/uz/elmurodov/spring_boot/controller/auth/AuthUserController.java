@@ -6,10 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import uz.elmurodov.spring_boot.controller.base.AbstractController;
 import uz.elmurodov.spring_boot.dto.auth.AuthUserCreateDto;
+import uz.elmurodov.spring_boot.entity.auth.AuthRole;
 import uz.elmurodov.spring_boot.services.auth.AuthUserService;
 
+import java.util.UUID;
+
 @Controller
-@RequestMapping("/user/*")
+@RequestMapping("/auth/*")
 public class AuthUserController extends AbstractController<AuthUserService> {
     public AuthUserController(AuthUserService service) {
         super(service);
@@ -17,13 +20,13 @@ public class AuthUserController extends AbstractController<AuthUserService> {
 
     @RequestMapping(value = "create/", method = RequestMethod.GET)
     public String createPage() {
-        return "user/create";
+        return "auth/register";
     }
 
-    @RequestMapping(value = "create/", method = RequestMethod.POST)
+    @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(@ModelAttribute AuthUserCreateDto dto) {
         service.create(dto);
-        return "user/create";
+        return "redirect:/index/index";
     }
 
 }

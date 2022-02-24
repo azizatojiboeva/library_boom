@@ -16,6 +16,10 @@ import java.util.UUID;
 @SpringBootApplication
 @EnableJpaAuditing
 public class Application /*implements CommandLineRunner */{
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+
 
 
     private final AuthUserRepository authUserRepository;
@@ -29,9 +33,7 @@ public class Application /*implements CommandLineRunner */{
     }
 
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+
 
     @Transactional(timeout = 10)
     public void run(String... args) throws Exception {

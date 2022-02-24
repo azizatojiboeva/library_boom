@@ -19,7 +19,7 @@ public interface ProjectColumnMapper extends BaseMapper<
         ProjectColumnDto,
         ProjectColumnCreateDto,
         ProjectColumnUpdateDto
-        > {
+        > ,uz.elmurodov.spring_boot.mapper.base.Mapper {
 
     @Override
     ProjectColumnDto toDto(ProjectColumn projectColumn);

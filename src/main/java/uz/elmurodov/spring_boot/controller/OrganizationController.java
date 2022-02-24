@@ -38,11 +38,11 @@ public class OrganizationController extends AbstractController<OrganizationServi
         return "organization/detail";
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public String listPage(Model model) {
-        model.addAttribute("organizations", service.getAll(new GenericCriteria()));
-        return "organization/list";
-    }
+//    @RequestMapping(value = "", method = RequestMethod.GET)
+//    public String listPage(Model model) {
+//        model.addAttribute("organizations", service.getAll(new GenericCriteria()));
+//        return "organization/list";
+//    }
 
 
     @RequestMapping(value = "update/{id}/", method = RequestMethod.GET)
@@ -66,9 +66,9 @@ public class OrganizationController extends AbstractController<OrganizationServi
     public String listPage() {
         return "index/index";
     }
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public String listPage(Model model) {
-        model.addAttribute("organizations", service.getAll(new GenericCriteria()));
-        return "organization/list";
-    }
+//    @RequestMapping(value = "", method = RequestMethod.GET)
+//    public String listPage(Model model) {
+//        model.addAttribute("organizations", service.getAll(new GenericCriteria()));
+//        return "organization/list";
+//    }
 }

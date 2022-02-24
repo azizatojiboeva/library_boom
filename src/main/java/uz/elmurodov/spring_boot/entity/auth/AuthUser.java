@@ -32,25 +32,25 @@ public class AuthUser extends Auditable {
 //    @JoinColumn(name = "organization_id", nullable = true)
     private Long organizationId;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private UUID code;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "role_id", nullable = false)
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "role_id", nullable = true)
     private AuthRole role;
 
     private boolean active = true;
 
     private boolean blocked;
 
-    @Column(nullable = false )
-    private String email;
-
-
-    private boolean isSuperUser;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "organization_id", nullable = false)
-    private Organization organizationId;
+//    @Column(nullable = false )
+//    private String email;
+//
+//
+//    private boolean isSuperUser;
+//
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "organization_id", nullable = false)
+//    private Organization organizationId;
 
 }
