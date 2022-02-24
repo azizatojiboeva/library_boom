@@ -38,7 +38,7 @@ public class AuthUser extends Auditable {
     @Column(nullable = false )
     private String email;
 
-    @Column(columnDefinition = "default false")
+
     private boolean isSuperUser;
 
     @OneToOne(cascade = CascadeType.ALL)

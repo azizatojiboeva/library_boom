@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        body{
+            text-decoration: none;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index html one</title>
-    <link rel="stylesheet" href="./assets/css/index2.css">
+    <link rel="stylesheet" th:href="@{/css/index2.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,11 +23,11 @@
                     <i class="fas fa-bars"></i>
                 </div>
                 <div class="logo">
-                    <img src="./assets/imges/logo.png" alt="">
+                    <img th:src="@{/images/logo.png}" alt="">
                 </div>
 
                 <div class="link">
-                    <a href="#"> -- Clients
+                    <a th:href="@{/project/index}"> -- Home
                     </a>
                     <a href="#">Task manager</a>
                     <a href="#">Inbox</a>
@@ -42,12 +47,12 @@
 
                     <div class="user-information">
                         <div class="icon">
-                            <img src="./assets/imges/bell.png" alt="">
+                            <img th:src="@{/images/bell.png}" alt="">
                             <i class="far fa-envelope"></i>
                         </div>    
                         
                         <div class="user">
-                            <img src="./assets/imges/useer.png" alt="">
+                            <img th:src="@{/images/useer.png}" alt="">
                             <p>Azhar I.
                                 <i class="fas fa-angle-down"></i>
                             </p>
@@ -82,16 +87,19 @@
                             <div class="todoContent-box">
                                 <div class="todo-img">
                                     <p>To do</p>
-                                    <img src="./assets/imges/plus-circle.png" alt="">
-                                </div>
-                                <div class="todo-box">
-                                    <h4>CRM system design
-                                        <button class="medium">Medium</button>   
-                                    </h4>
-                                    <p><span>Participant:  </span>Azhar</p>
-                                    <p><span>Participant:  </span>Azhar</p>
+                                    <img th:src="@{/images/plus-circle.png}" alt="">
                                 </div>
 
+                                <a th:href="@{/task/task}">
+                                    <div class="todo-box">
+                                        <h4>CRM system design
+                                            <button class="medium">Medium</button>
+                                        </h4>
+                                        <p><span>Participant:  </span>Azhar</p>
+                                        <p><span>Participant:  </span>Azhar</p>
+                                    </div>
+
+                                </a>
                                 <div class="todo-box">
                                     <h4>CRM system design
                                         <button class="low">Low</button>   

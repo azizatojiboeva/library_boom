@@ -27,7 +27,6 @@ public class OrganizationServiceImpl extends
 
     @Autowired
     protected OrganizationServiceImpl(OrganizationRepository repository,
-                                      @Qualifier("organizationMapper")
                                               OrganizationMapper mapper,
                                       OrganizationValidator validator,
                                       BaseUtils baseUtils,

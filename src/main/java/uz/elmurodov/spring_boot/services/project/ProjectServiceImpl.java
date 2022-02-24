@@ -1,7 +1,6 @@
 package uz.elmurodov.spring_boot.services.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import uz.elmurodov.spring_boot.criteria.GenericCriteria;
 import uz.elmurodov.spring_boot.dto.project.ProjectCreateDto;
@@ -27,8 +26,7 @@ public class ProjectServiceImpl extends AbstractService<
     @Autowired
     protected ProjectServiceImpl(
             ProjectRepository repository,
-            @Qualifier("projectMapper")
-                    ProjectMapper mapper,
+            ProjectMapper mapper,
             ProjectValidator validator,
             BaseUtils baseUtils) {
         super(repository, mapper, validator, baseUtils);

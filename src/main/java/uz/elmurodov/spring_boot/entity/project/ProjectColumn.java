@@ -19,7 +19,7 @@ public class ProjectColumn extends Auditable {
     @Column(name = "project_id", nullable = false)
     private Long project_id;
 
-    private int order;
+    private int position;
 
     private boolean active;
 

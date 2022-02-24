@@ -1,131 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        .container {
-            width: 544px;
-            height: 100%;
-            padding: 20px 55px;
-            display: block;
-            margin: 30px auto;
-            text-align: center;
-            background: #ffffff;
-            box-shadow: 0px 0px 25px 10px #f9f9f3;
-        }
-
-        .goBack {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            margin-bottom: 10px;
-        }
-
-        .goBack a {
-            padding: 10px 20px;
-            background: #fb2e86;
-            border-radius: 3px;
-            font-weight: bold;
-            font-size: 17px;
-            line-height: 20px;
-            color: #ffffff;
-            text-decoration: none;
-        }
-
-        .login-text h3 {
-            font-family: Josefin Sans;
-            font-size: 32px;
-            line-height: 37px;
-            color: #000000;
-        }
-
-        .login-text p {
-            font-family: Josefin Sans;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 17px;
-            line-height: 20px;
-            color: #9096b2;
-            margin: 7px 0 37px 0;
-        }
-
-        .login-input input {
-            display: block;
-            margin: 23px auto;
-            padding: 15px 0 18px 13px;
-            width: 432px;
-            height: 52px;
-            background: #ffffff;
-            border: 1px solid #c2c5e1;
-            box-sizing: border-box;
-            border-radius: 2px;
-            outline: none;
-        }
-
-        .login-input input::placeholder {
-            font-family: Josefin Sans;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 16px;
-            line-height: 19px;
-            color: #9096b2;
-        }
-
-        .login-input p {
-            font-family: Josefin Sans;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 17px;
-            line-height: 20px;
-            color: #9096b2;
-            margin: 13px 0 23px 0;
-            text-align: left;
-        }
-
-        .login-button button {
-            width: 100%;
-            height: 47px;
-            background: #fb2e86;
-            border-radius: 3px;
-            font-weight: bold;
-            font-size: 17px;
-            line-height: 20px;
-            color: #ffffff;
-            border: none;
-        }
-
-        .login-button p {
-            font-family: Josefin Sans;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 17px;
-            line-height: 20px;
-            color: #9096b2;
-            margin-top: 28px;
-        }
-
-        @media (max-width: 586px) {
-            .container {
-                width: 350px;
-                padding: 55px 10px;
-            }
-            .login-input input {
-                width: 100%;
-            }
-        }
-
-    </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>register</title>
 
-    <link rel="stylesheet" href="./assets/css/register.css">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
 
       <!-- font aweosome link  -->
 
@@ -138,25 +20,25 @@
 </head>
 <body>
     <div class="container">
-        <div class="goBack" id="link">
-            <a href="#">Back</a>
-            <a href="#">Login</a>
-        </div>
-        <div class="login-text">
-            <h3><a href="#">Registratsiya</a></h3>
-        </div>
+        <form th:action="@{/auth/create}", method="post" >
+            <div class="goBack" id="link">
+                <a th:href="@{/project/index}">Back</a>
+                <a href="#">Login</a>
+            </div>
+            <div class="login-text">
+                <h3><a href="#">Add New User</a></h3>
+            </div>
 
-        <div class="login-input">
-            <input type="text" placeholder="Enter your Username">
-            <input type="text" placeholder="Enter your Email">
-            <input type="number" placeholder="Enter your Number">
-            <input type="password" placeholder="Enter your password">
-            <input type="password" placeholder="Confirm your password">
-        </div>
+            <div class="login-input">
+                <input type="text" placeholder="Enter your Username" name="username"/>
+                <input type="text" placeholder="Enter your Email" name="email"/>
+                <input type="password" placeholder="Enter your password"  name="password"/>
+            </div>
 
-        <div class="login-button">
-            <button type="submit">Registratsiya</button>
-        </div>
+            <div class="login-button">
+                <button type="submit">Create</button>
+            </div>
+        </form>
     </div>
 </body>
 </html>
