@@ -17,8 +17,8 @@ public class TaskUpdateDto extends GenericDto {
 
     private String name;
     private String description;
-    private Long level;
-    private Long priority;
+//    private Long level;
+//    private Long priority;
     private LocalDateTime deadline;
 
 }

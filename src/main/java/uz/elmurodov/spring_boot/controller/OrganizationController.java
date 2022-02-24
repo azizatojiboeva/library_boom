@@ -17,63 +17,58 @@ public class OrganizationController extends AbstractController<OrganizationServi
 
 
     @Autowired
-    public OrganizationController(@Qualifier("organizationServiceImpl") OrganizationService service) {
+    public OrganizationController(OrganizationService service) {
         super(service);
     }
 
-//    @RequestMapping(value = "", method = RequestMethod.GET)
-//    public String listPage(Model model) {
-//        model.addAttribute("organizations", service.getAll(new GenericCriteria()));
-//        return "organization/list";
-//    }
+    @RequestMapping(value = "create/", method = RequestMethod.GET)
+    public String createPage() {
+        return "organization/create";
+    }
 
+    @RequestMapping(value = "create/", method = RequestMethod.POST)
+    public String create(@ModelAttribute OrganizationCreateDto dto) {
+        service.create(dto);
+        return "redirect:/";
+    }
+
+    @RequestMapping("detail/{id}/")
+    public String detail(Model model, @PathVariable(name = "id") Long id) {
+        model.addAttribute("organization", service.get(id));
+        return "organization/detail";
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String listPage(Model model) {
+        model.addAttribute("organizations", service.getAll(new GenericCriteria()));
+        return "organization/list";
+    }
+
+
+    @RequestMapping(value = "update/{id}/", method = RequestMethod.GET)
+    public String updatePage(Model model, @PathVariable(name = "id") Long id) {
+        model.addAttribute("organization", service.get(id));
+        return "organization/update";
+    }
+
+    @RequestMapping(value = "update/{id}/", method = RequestMethod.PATCH)
+    public String update(@ModelAttribute OrganizationUpdateDto dto) {
+        service.update(dto);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
+    public String deletePage(Model model, @PathVariable(name = "id") Long id) {
+        model.addAttribute("organization", service.get(id));
+        return "organization/delete";
+    }
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String listPage() {
         return "index/index";
     }
-
-//    @RequestMapping(value = "create/", method = RequestMethod.GET)
-//    public String createPage() {
-//        return "organization/create";
-//    }
-//
-//    @RequestMapping(value = "create/", method = RequestMethod.POST)
-//    public String create(@ModelAttribute OrganizationCreateDto dto) {
-//        service.create(dto);
-//        return "redirect:/";
-//    }
-//
-//
-//    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
-//    public String deletePage(Model model, @PathVariable(name = "id") Long id) {
-//        model.addAttribute("organization", service.get(id));
-//        return "organization/delete";
-//    }
-//
-//    @RequestMapping(value = "delete/{id}", method = RequestMethod.POST)
-//    public String delete(@PathVariable(name = "id") Long id) {
-//        service.delete(id);
-//        return "redirect:/";
-//    }
-//
-//
-//    @RequestMapping(value = "update/{id}/", method = RequestMethod.GET)
-//    public String updatePage(Model model, @PathVariable(name = "id") Long id) {
-//        model.addAttribute("organization", service.get(id));
-//        return "organization/update";
-//    }
-//
-//    @RequestMapping(value = "update/{id}/", method = RequestMethod.PATCH)
-//    public String update(@ModelAttribute OrganizationUpdateDto dto) {
-//        service.update(dto);
-//        return "redirect:/";
-//    }
-//
-//    @RequestMapping("detail/{id}/")
-//    public String detail(Model model, @PathVariable(name = "id") Long id) {
-//        model.addAttribute("organization", service.get(id));
-//        return "organization/detail";
-//    }
-
-
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String listPage(Model model) {
+        model.addAttribute("organizations", service.getAll(new GenericCriteria()));
+        return "organization/list";
+    }
 }

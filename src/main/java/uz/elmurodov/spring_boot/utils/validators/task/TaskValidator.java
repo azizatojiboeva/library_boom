@@ -1,9 +1,9 @@
-package uz.elmurodov.spring_boot.utils.validators.project;
+package uz.elmurodov.spring_boot.utils.validators.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import uz.elmurodov.spring_boot.dto.project.ProjectCreateDto;
-import uz.elmurodov.spring_boot.dto.project.ProjectUpdateDto;
+import uz.elmurodov.spring_boot.dto.task.TaskCreateDto;
+import uz.elmurodov.spring_boot.dto.task.TaskUpdateDto;
 import uz.elmurodov.spring_boot.exceptions.ValidationException;
 import uz.elmurodov.spring_boot.utils.BaseUtils;
 import uz.elmurodov.spring_boot.utils.validators.AbstractValidator;
@@ -12,10 +12,13 @@ import uz.elmurodov.spring_boot.utils.validators.AbstractValidator;
  * @Author Aziza Tojiboyeva
  */
 @Component
-public class ProjectValidator extends AbstractValidator<ProjectCreateDto, ProjectUpdateDto,Long> {
+public class TaskValidator extends AbstractValidator<
+        TaskCreateDto,
+        TaskUpdateDto,
+        Long> {
 
     @Autowired
-    protected ProjectValidator(BaseUtils baseUtils) {
+    protected TaskValidator(BaseUtils baseUtils) {
         super(baseUtils);
     }
 
@@ -25,12 +28,12 @@ public class ProjectValidator extends AbstractValidator<ProjectCreateDto, Projec
     }
 
     @Override
-    public void validOnCreate(ProjectCreateDto projectCreateDto) throws ValidationException {
+    public void validOnCreate(TaskCreateDto taskCreateDto) throws ValidationException {
 
     }
 
     @Override
-    public void validOnUpdate(ProjectUpdateDto cd) throws ValidationException {
+    public void validOnUpdate(TaskUpdateDto cd) throws ValidationException {
 
     }
 }
