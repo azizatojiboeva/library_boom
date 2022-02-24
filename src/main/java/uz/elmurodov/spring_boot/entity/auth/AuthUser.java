@@ -11,9 +11,10 @@ import java.util.UUID;
 /**
  * @Author Aziza Tojiboyeva
  */
-@Entity
 @Setter
 @Getter
+@Table
+@Entity
 public class AuthUser extends Auditable {
 
     @Column(unique = true, nullable = false)
@@ -22,7 +23,19 @@ public class AuthUser extends Auditable {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
+    private UUID code;
+
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id", nullable = false)
+    private AuthRole role;
+
+    private boolean active = true;
+
+    private boolean blocked;
+
+    @Column(nullable = false )
     private String email;
 
     @Column(columnDefinition = "default false")
@@ -32,14 +45,4 @@ public class AuthUser extends Auditable {
     @JoinColumn(name = "organization_id", nullable = false)
     private Organization organizationId;
 
-    @Column(nullable = false)
-    private UUID code;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "role_id", nullable = false)
-    private AuthRole role;
-
-    private boolean active = true;
-
-    private boolean blocked;
 }

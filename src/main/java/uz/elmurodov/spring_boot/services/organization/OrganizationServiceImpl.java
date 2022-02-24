@@ -9,7 +9,6 @@ import uz.elmurodov.spring_boot.dto.organization.OrganizationCreateDto;
 import uz.elmurodov.spring_boot.dto.organization.OrganizationDto;
 import uz.elmurodov.spring_boot.dto.organization.OrganizationUpdateDto;
 import uz.elmurodov.spring_boot.entity.organization.Organization;
-
 import uz.elmurodov.spring_boot.mapper.organization.OrganizationMapper;
 import uz.elmurodov.spring_boot.reposiroty.organization.OrganizationRepository;
 import uz.elmurodov.spring_boot.services.base.AbstractService;
@@ -28,7 +27,8 @@ public class OrganizationServiceImpl extends
 
     @Autowired
     protected OrganizationServiceImpl(OrganizationRepository repository,
-                                      OrganizationMapper mapper,
+                                      @Qualifier("organizationMapper")
+                                              OrganizationMapper mapper,
                                       OrganizationValidator validator,
                                       BaseUtils baseUtils,
                                       FileStorageService fileStorageService) {
