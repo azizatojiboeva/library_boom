@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  lang="en" xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 
     <meta charset="UTF-8">
@@ -29,9 +30,15 @@
         </div>
 
         <div class="link">
-            <a th:href="@{/home/}"> -- Home
-            </a>
+            <li class="nav-item active" sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{/organization/create}">Create New Project</a>
+            </li>
+
+            <li class="nav-item active" sec:authorize="hasRole('ADMIN')">
             <a th:href="@{/organization/create}">Create New Organization</a>
+            </li>
+
+            <a th:href="@{/home/}"> -- Home</a>
             <a th:href="@{/auth/register}">Create New Admin</a>
             <a href="#">Contacts</a>
         </div>
@@ -110,7 +117,7 @@
                     <td th:text="${org.code}"></td>
                     <td>
 <!--                        <a th:href="@{/project/project/{todo_id}(todo_id=${todo.id})}">✅</a>-->
-                        <a th:href="@{/project/project}" style="text-decoration: none">➕</a>
+                        <a th:href="@{/organization/detail}" style="text-decoration: none">➕</a>
                     </td>
                 </tr>
 

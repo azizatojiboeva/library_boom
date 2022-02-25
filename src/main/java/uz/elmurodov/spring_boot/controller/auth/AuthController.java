@@ -1,7 +1,6 @@
 package uz.elmurodov.spring_boot.controller.auth;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -26,6 +25,7 @@ public class AuthController {
     public String registerPage() {
         return "auth/register";
     }
+
     @RequestMapping(value = "basic", method = RequestMethod.GET)
     public String indexPage() {
         return "index/index";

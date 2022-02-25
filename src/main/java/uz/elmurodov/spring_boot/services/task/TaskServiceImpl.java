@@ -49,6 +49,9 @@ public class TaskServiceImpl extends AbstractService<
     public List<TaskDto> getAll(GenericCriteria criteria) {
         return null;
     }
+  public List<TaskDto> getAll(Long id) {
+        return null;
+    }
 
     @Override
     public TaskDto get(Long id) {

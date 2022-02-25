@@ -43,7 +43,7 @@ public class AuthUser extends Auditable {
 
     private boolean blocked;
     @Column(nullable = true)
-    private boolean deleted = false;
+    private Boolean deleted = false;
 
 //    @Column(nullable = false )
 //    private String email;

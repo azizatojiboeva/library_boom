@@ -2,6 +2,7 @@ package uz.elmurodov.spring_boot.entity.project;
 
 import lombok.Getter;
 import lombok.Setter;
+import uz.elmurodov.spring_boot.dto.task.TaskDto;
 import uz.elmurodov.spring_boot.entity.base.Auditable;
 import uz.elmurodov.spring_boot.entity.task.Task;
 
@@ -23,7 +24,6 @@ public class ProjectColumn extends Auditable {
     private Long project_id;
 
     private int position;
-
 
     private boolean active;
 

@@ -40,13 +40,18 @@ public class OrganizationController extends AbstractController<OrganizationServi
         return "redirect:/home/";
     }
 
-    @RequestMapping("detail/{id}/")
-    public String detail(Model model, @PathVariable(name = "id") Long id) {
-        model.addAttribute("organization", service.get(id));
+//    @RequestMapping("detail/{id}/")
+//    public String detail(Model model, @PathVariable(name = "id") Long id) {
+//        model.addAttribute("organization", service.get(id));
+//
+//        return "organization/detail";
+//    }
 
+
+    @RequestMapping(value = "detail" , method = RequestMethod.GET)
+    public String detailPage(){
         return "organization/detail";
     }
-
 //    @RequestMapping(value = "", method = RequestMethod.GET)
 //    public String listPage(Model model) {
 //        model.addAttribute("organizations", service.getAll());
