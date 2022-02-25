@@ -10,6 +10,7 @@ import uz.elmurodov.spring_boot.entity.auth.AuthUser;
 import uz.elmurodov.spring_boot.reposiroty.base.AbstractRepository;
 
 
+import java.util.List;
 import java.util.Optional;
 
 public interface AuthUserRepository extends JpaRepository<AuthUser, Long>, AbstractRepository {
@@ -24,4 +25,8 @@ public interface AuthUserRepository extends JpaRepository<AuthUser, Long>, Abstr
     @Transactional
     @Query(value = "update etm_b4.auth_user set username = :#{#dto.username} ,role_id=:#{#dto.role}, email=:#{#dto.email}  where id = :id", nativeQuery = true)
     void update(@Param("dto") AuthUserUpdateDto dto);
+
+
+    @Query(value = "select * from etm_b4.auth_user where not deleted", nativeQuery = true)
+    List<AuthUser> getAll();
 }

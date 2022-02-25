@@ -25,7 +25,7 @@ public class AuthUser extends Auditable {
     @Column(nullable = false, unique = true)
     private String email;
 
-//    @Column(columnDefinition = "default false")
+    //    @Column(columnDefinition = "default false")
     private boolean isSuperUser;
 
     @OneToOne(cascade = CascadeType.MERGE)
@@ -42,6 +42,8 @@ public class AuthUser extends Auditable {
     private boolean active = true;
 
     private boolean blocked;
+    @Column(nullable = true)
+    private boolean deleted = false;
 
 //    @Column(nullable = false )
 //    private String email;

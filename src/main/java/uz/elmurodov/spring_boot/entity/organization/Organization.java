@@ -25,6 +25,6 @@ public class Organization extends Auditable {
     private String location;
 
     private Long owner;
-
-
+    @Column(nullable = true)
+    private boolean deleted = false;
 }
