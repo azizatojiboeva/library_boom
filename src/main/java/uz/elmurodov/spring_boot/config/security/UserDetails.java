@@ -15,6 +15,8 @@ public class UserDetails implements org.springframework.security.core.userdetail
     private Long id;
     @Getter
     private Organization organizationId;
+    @Getter
+    private AuthRole role;
     private String username;
     private String password;
     private UUID code;
