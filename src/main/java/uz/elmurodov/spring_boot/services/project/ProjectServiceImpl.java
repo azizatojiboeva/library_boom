@@ -40,13 +40,14 @@ public class ProjectServiceImpl extends AbstractService<
     @Override
     public Long create(ProjectCreateDto createDto) {
         Project project = mapper.fromCreateDto(createDto);
-        project.setOrganization(new Organization());
+        project.setOrganization(auditAware.getCredentials().getOrganizationId());
         repository.save(project);
         return project.getId();
     }
 
     @Override
     public Void delete(Long id) {
+        repository.deleteSoft(id);
         return null;
     }
 

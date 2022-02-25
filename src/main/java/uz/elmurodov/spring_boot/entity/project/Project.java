@@ -28,4 +28,8 @@ public class Project extends Auditable {
     @Column(name = "closed")
     private Boolean closed;
 
+    @Column(nullable = true)
+    private Boolean deleted = false;
+
+
 }

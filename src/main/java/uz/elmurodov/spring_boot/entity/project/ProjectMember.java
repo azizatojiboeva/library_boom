@@ -22,4 +22,7 @@ public class ProjectMember extends Auditable {
     @Column(name = "is_lead")
     private Boolean isLead;
 
+    @Column(nullable = true)
+    private Boolean deleted = false;
+
 }
