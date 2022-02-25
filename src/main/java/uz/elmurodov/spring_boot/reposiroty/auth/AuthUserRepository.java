@@ -22,6 +22,6 @@ public interface AuthUserRepository extends JpaRepository<AuthUser, Long>, Abstr
 
     @Modifying
     @Transactional
-    @Query(value = "update etm_b4.auth_user set username = :#{#dto.username} ,role_id=:#{#dto.role.id}, email=:#{#dto.email}  where id = :id", nativeQuery = true)
+    @Query(value = "update etm_b4.auth_user set username = :#{#dto.username} ,role_id=:#{#dto.role}, email=:#{#dto.email}  where id = :id", nativeQuery = true)
     void update(@Param("dto") AuthUserUpdateDto dto);
 }

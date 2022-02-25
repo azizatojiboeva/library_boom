@@ -12,5 +12,5 @@ import uz.elmurodov.spring_boot.entity.auth.AuthRole;
 public class AuthUserUpdateDto extends GenericDto {
     private String username;
     private String email;
-    private AuthRoleDto role;
+    private Long role;
 }
