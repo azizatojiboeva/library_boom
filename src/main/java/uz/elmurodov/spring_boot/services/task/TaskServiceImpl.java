@@ -77,6 +77,7 @@ public class TaskServiceImpl extends AbstractService<
         return null;
     }
 
+
     @Override
     public Long totalCount(GenericCriteria criteria) {
         return null;
