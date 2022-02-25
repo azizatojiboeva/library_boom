@@ -27,11 +27,11 @@
             <th th:text="${organization.email}"></th>
             <th th:text="${organization.code}"></th>
             <th class="icons">
-                <a th:href="@{/organization/detail/{id}/(id = ${organization.id})}">👁</a>
+                <a th:href="@{/templates/organizations/detail/{id}/(id = ${organization.id})}">👁</a>
                 <a href="#">🔐</a>
                 <a href="#">🔓</a>
-                <a th:href="@{/organization/delete/{id}/(id=${organization.id})}">🗑</a>
-                <a th:href="@{/organization/update/{id}/(id=${organization.id})}">📝</a>
+                <a th:href="@{/templates/organizations/delete/{id}/(id=${organization.id})}">🗑</a>
+                <a th:href="@{/templates/organizations/update/{id}/(id=${organization.id})}">📝</a>
             </th>
         </tr>
         </tbody>

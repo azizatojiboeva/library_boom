@@ -64,7 +64,8 @@ public class AuthUserServiceImpl extends
 
     @Override
     public AuthUserDto get(Long id) {
-        return null;
+        AuthUser authUser = repository.getById(id);
+        return mapper.toDto(authUser);
     }
 
     @Override

@@ -69,19 +69,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Red+Hat+Display&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Red+Hat+Display&display=swap"
+            rel="stylesheet">
 
-        <link rel="stylesheet" href="./assets/css/logout.css">
+    <link rel="stylesheet" href="./assets/css/logout.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
 </head>
 <body>
-    <div class="container">
-        <h3>You want to leave your Account</h3>
+<div class="container">
+    <h3>You want to leave your Account</h3>
 
-        <div class="btn">
-            <button type="submit">No</button>
+    <div class="btn">
+        <form th:action="@{/auth/logout}" th:method="post">
             <button type="submit">Yes</button>
-        </div>
+            <a th:href="@{/}" class="btn btn-dark">No</a>
+        </form>
     </div>
+</div>
 </body>
 </html>

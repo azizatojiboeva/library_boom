@@ -15,7 +15,7 @@
                 <p class="h4" th:text="${organization.code}"></p>
                 <img class="mr-3" width="120" height="180" th:src="@{${organization.logo}}"
                      th:alt="${organization.name}"/>
-                <form method="get" th:action="@{/organization/list}">
+                <form method="get" th:action="@{/templates/organizations/list}">
                     <button type="submit" class="btn btn-warning">Back</button>
                 </form>
             </div>

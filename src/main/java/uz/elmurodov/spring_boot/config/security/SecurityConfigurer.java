@@ -46,7 +46,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .formLogin(httpSecurityFormLoginConfigurer ->
                         httpSecurityFormLoginConfigurer
                                 .loginPage("/auth/login")
-                                .defaultSuccessUrl("/index/index", false)
+                                .defaultSuccessUrl("/", false)
                                 .loginProcessingUrl("/auth/login")
                 )
                 .rememberMe(httpSecurityRememberMeConfigurer -> {

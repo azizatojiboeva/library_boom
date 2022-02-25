@@ -3,12 +3,14 @@ package uz.elmurodov.spring_boot.dto.organization;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.web.multipart.MultipartFile;
 import uz.elmurodov.spring_boot.dto.base.Dto;
 
 @Getter
 @Setter
 @Builder
+@ToString
 public class OrganizationCreateDto implements Dto {
     private String name;
     private MultipartFile logo;

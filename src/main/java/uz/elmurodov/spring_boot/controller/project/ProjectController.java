@@ -3,7 +3,10 @@ package uz.elmurodov.spring_boot.controller.project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import uz.elmurodov.spring_boot.controller.base.AbstractController;
 import uz.elmurodov.spring_boot.dto.project.ProjectCreateDto;
 import uz.elmurodov.spring_boot.dto.project.ProjectUpdateDto;
@@ -17,9 +20,24 @@ public class ProjectController extends AbstractController<ProjectService> {
         super(service);
     }
 
+    @RequestMapping(value = "list")
+    public String homePage(Model model) {
+        return "index/index";
+    }
+
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public String createPage() {
         return "project/create";
+    }
+
+    @RequestMapping(value = "project", method = RequestMethod.GET)
+    public String projectPage() {
+        return "index/project";
+    }
+
+    @RequestMapping(value = "index", method = RequestMethod.GET)
+    public String indexPage() {
+        return "index/index";
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)

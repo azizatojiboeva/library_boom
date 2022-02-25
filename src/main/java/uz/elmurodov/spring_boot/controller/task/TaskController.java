@@ -14,6 +14,6 @@ public class TaskController {
 
     @RequestMapping(value = "task" , method = RequestMethod.GET)
     public String taskPage(){
-        return "index/index3";
+        return "task";
     }
 }

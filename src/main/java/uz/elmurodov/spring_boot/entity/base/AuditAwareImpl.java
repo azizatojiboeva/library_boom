@@ -18,4 +18,5 @@ public class AuditAwareImpl implements AuditorAware<Long> {
         UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return Optional.of(principal.getId());
     }
+
 }

@@ -18,7 +18,7 @@
                     <li th:text="${organization.email}"></li>
                     <li th:text="${organization.code}"></li>
                 </ul>
-                <form method="post" th:action="@{/organization/delete/{id}(id=${organization.id})}">
+                <form method="post" th:action="@{/templates/organizations/delete/{id}(id=${organization.id})}">
                     <button type="submit" class="btn btn-danger">Yes</button>
                     <a th:href="@{/}" class="btn btn-warning">No</a>
                 </form>

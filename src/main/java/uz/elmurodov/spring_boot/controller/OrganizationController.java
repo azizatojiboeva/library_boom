@@ -1,18 +1,19 @@
 package uz.elmurodov.spring_boot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import uz.elmurodov.spring_boot.controller.base.AbstractController;
-import uz.elmurodov.spring_boot.criteria.GenericCriteria;
 import uz.elmurodov.spring_boot.dto.organization.OrganizationCreateDto;
 import uz.elmurodov.spring_boot.dto.organization.OrganizationUpdateDto;
 import uz.elmurodov.spring_boot.services.organization.OrganizationService;
 
 @Controller
-@RequestMapping("/index/*")
+@RequestMapping("/organization/*")
 public class OrganizationController extends AbstractController<OrganizationService> {
 
 
@@ -21,26 +22,34 @@ public class OrganizationController extends AbstractController<OrganizationServi
         super(service);
     }
 
-    @RequestMapping(value = "create/", method = RequestMethod.GET)
+//    @RequestMapping(value = "")
+//    public String listsPage(Model model, Model session) {
+//        model.addAttribute("organizations", service.getAll(new GenericCriteria()));
+//        return "index/index";
+//    }
+//
+
+    @RequestMapping(value = "create", method = RequestMethod.GET)
     public String createPage() {
         return "organization/create";
     }
 
-    @RequestMapping(value = "create/", method = RequestMethod.POST)
+    @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(@ModelAttribute OrganizationCreateDto dto) {
         service.create(dto);
-        return "redirect:/";
+        return "redirect:/home/";
     }
 
     @RequestMapping("detail/{id}/")
     public String detail(Model model, @PathVariable(name = "id") Long id) {
         model.addAttribute("organization", service.get(id));
+
         return "organization/detail";
     }
 
 //    @RequestMapping(value = "", method = RequestMethod.GET)
 //    public String listPage(Model model) {
-//        model.addAttribute("organizations", service.getAll(new GenericCriteria()));
+//        model.addAttribute("organizations", service.getAll());
 //        return "organization/list";
 //    }
 
@@ -62,10 +71,7 @@ public class OrganizationController extends AbstractController<OrganizationServi
         model.addAttribute("organization", service.get(id));
         return "organization/delete";
     }
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public String listPage() {
-        return "index/index";
-    }
+
 //    @RequestMapping(value = "", method = RequestMethod.GET)
 //    public String listPage(Model model) {
 //        model.addAttribute("organizations", service.getAll(new GenericCriteria()));

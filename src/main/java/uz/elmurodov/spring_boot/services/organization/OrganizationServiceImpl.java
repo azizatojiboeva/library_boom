@@ -5,9 +5,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import uz.elmurodov.spring_boot.criteria.GenericCriteria;
+import uz.elmurodov.spring_boot.dto.auth.AuthUserDto;
 import uz.elmurodov.spring_boot.dto.organization.OrganizationCreateDto;
 import uz.elmurodov.spring_boot.dto.organization.OrganizationDto;
 import uz.elmurodov.spring_boot.dto.organization.OrganizationUpdateDto;
+import uz.elmurodov.spring_boot.entity.auth.AuthUser;
+import uz.elmurodov.spring_boot.entity.base.AuditAwareImpl;
 import uz.elmurodov.spring_boot.entity.organization.Organization;
 import uz.elmurodov.spring_boot.mapper.organization.OrganizationMapper;
 import uz.elmurodov.spring_boot.reposiroty.organization.OrganizationRepository;
@@ -27,7 +30,7 @@ public class OrganizationServiceImpl extends
 
     @Autowired
     protected OrganizationServiceImpl(OrganizationRepository repository,
-                                              OrganizationMapper mapper,
+                                      OrganizationMapper mapper,
                                       OrganizationValidator validator,
                                       BaseUtils baseUtils,
                                       FileStorageService fileStorageService) {
@@ -41,6 +44,9 @@ public class OrganizationServiceImpl extends
         String logoPath = fileStorageService.store(file);
         Organization organization = mapper.fromCreateDto(createDto);
         organization.setLogo(logoPath);
+        organization.setOwner(new AuditAwareImpl().getCurrentAuditor().get());
+        organization.setCreatedBy(new AuditAwareImpl().getCurrentAuditor().get());
+        organization.setLastModifiedBy(new AuditAwareImpl().getCurrentAuditor().get());
         repository.save(organization);
         return organization.getId();
     }
@@ -62,6 +68,7 @@ public class OrganizationServiceImpl extends
     public List<OrganizationDto> getAll(GenericCriteria criteria) {
         return mapper.toDto(repository.findAll());
     }
+
 
     @Override
     public OrganizationDto get(Long id) {

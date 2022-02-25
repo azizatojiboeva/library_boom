@@ -20,6 +20,8 @@ public class AuthController {
     public String logoutPage() {
         return "auth/logout";
     }
+
+
     @RequestMapping(value = "register", method = RequestMethod.GET)
     public String registerPage() {
         return "auth/register";
