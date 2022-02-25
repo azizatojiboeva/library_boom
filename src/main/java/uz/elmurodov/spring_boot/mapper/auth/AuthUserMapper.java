@@ -1,6 +1,7 @@
 package uz.elmurodov.spring_boot.mapper.auth;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import uz.elmurodov.spring_boot.dto.auth.AuthUserCreateDto;
@@ -29,5 +30,6 @@ public interface AuthUserMapper extends BaseMapper<AuthUser,
     AuthUser fromCreateDto(AuthUserCreateDto dto);
 
     @Override
+    @Mapping(target = "role",ignore = true)
     AuthUser fromUpdateDto(AuthUserUpdateDto authUserUpdateDto);
 }
