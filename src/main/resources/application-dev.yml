@@ -3,12 +3,13 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/spring_boot_projects?currentSchema=etm_b4
     username: postgres
-    password: 777
+    password: Aziza@0201
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
     open-in-view: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
   banner:
     image:
       location: classpath:banner.txt

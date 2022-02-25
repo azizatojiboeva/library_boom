@@ -17,6 +17,7 @@ public class TaskValidator extends AbstractValidator<
         TaskUpdateDto,
         Long> {
 
+
     @Autowired
     protected TaskValidator(BaseUtils baseUtils) {
         super(baseUtils);

@@ -11,6 +11,8 @@ public class UserDetails implements org.springframework.security.core.userdetail
 
     @Getter
     private Long id;
+    @Getter
+    private Long organizationId;
     private String username;
     private String password;
     private UUID code;
@@ -21,6 +23,7 @@ public class UserDetails implements org.springframework.security.core.userdetail
 
     public UserDetails(AuthUser user) {
         this.id = user.getId();
+        this.organizationId=user.getOrganizationId();
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.code = user.getCode();

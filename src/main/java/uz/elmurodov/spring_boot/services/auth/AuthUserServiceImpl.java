@@ -39,7 +39,8 @@ public class AuthUserServiceImpl extends
     public Long create(AuthUserCreateDto createDto) {
         AuthUser user = mapper.fromCreateDto(createDto);
         user.setPassword(encoder.encode(createDto.getPassword()));
-        user.setOrganizationId(1L);
+        user.setOrganizationId(new AuditAwareImpl().getCredentials().getOrganizationId());
+        user.setCode(UUID.randomUUID());
         user.setRole(authRoleRepository.getAuthRoleById(1L).get());
         user.setCreatedBy(new AuditAwareImpl().getCurrentAuditor().get());
         repository.save(user);
