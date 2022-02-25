@@ -6,12 +6,14 @@ import uz.elmurodov.spring_boot.entity.base.Auditable;
 import uz.elmurodov.spring_boot.entity.organization.Organization;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Setter
 @Getter
 @Table(name = "project", schema = "etm_b4")
 public class Project extends Auditable {
+
 
     @Lob
     @Column(name = "name")
@@ -27,5 +29,9 @@ public class Project extends Auditable {
 
     @Column(name = "closed")
     private Boolean closed;
+
+    @Column(nullable = true)
+    private Boolean deleted = false;
+
 
 }

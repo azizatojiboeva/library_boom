@@ -47,7 +47,7 @@ public class OrganizationServiceImpl extends
 
     @Override
     public Void delete(Long id) {
-        repository.deleteById(id);
+        repository.deleteSoft(id);
         return null;
     }
 
@@ -60,7 +60,7 @@ public class OrganizationServiceImpl extends
 
     @Override
     public List<OrganizationDto> getAll(GenericCriteria criteria) {
-        return mapper.toDto(repository.findAll());
+        return mapper.toDto(repository.getAll());
     }
 
     @Override

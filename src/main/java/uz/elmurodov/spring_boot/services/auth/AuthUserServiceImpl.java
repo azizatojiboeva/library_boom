@@ -24,14 +24,19 @@ public class AuthUserServiceImpl extends
         implements AuthUserService {
 
     private final PasswordEncoder encoder;
+    private final AuditAwareImpl auditAware;
     private final AuthRoleRepository authRoleRepository;
 
     protected AuthUserServiceImpl(AuthUserRepository repository,
                                   AuthUserMapper mapper,
                                   AuthUserValidator validator,
-                                  BaseUtils baseUtils, PasswordEncoder encoder, AuthRoleRepository authRoleRepository) {
+                                  BaseUtils baseUtils,
+                                  PasswordEncoder encoder,
+                                  AuthRoleRepository authRoleRepository,
+                                  AuditAwareImpl auditAware) {
         super(repository, mapper, validator, baseUtils);
         this.encoder = encoder;
+        this.auditAware = auditAware;
         this.authRoleRepository = authRoleRepository;
     }
 
@@ -39,28 +44,39 @@ public class AuthUserServiceImpl extends
     public Long create(AuthUserCreateDto createDto) {
         AuthUser user = mapper.fromCreateDto(createDto);
         user.setPassword(encoder.encode(createDto.getPassword()));
-        user.setOrganizationId(new AuditAwareImpl().getCredentials().getOrganizationId());
+        user.setOrganizationId(auditAware.getCredentials().getOrganizationId());
+        user.setCreatedBy(auditAware.getCurrentAuditor().get());
         user.setCode(UUID.randomUUID());
-        user.setRole(authRoleRepository.getAuthRoleById(1L).get());
-        user.setCreatedBy(new AuditAwareImpl().getCurrentAuditor().get());
+        setAuthRole(user);
         repository.save(user);
         return user.getId();
     }
 
-    @Override
-    public Void delete(Long id) {
-        return null;
+    private void setAuthRole(AuthUser user) {
+        if (auditAware.getCredentials().isSuperUser())
+            user.setRole(authRoleRepository.getAuthRoleById(2L).get());
+        else
+            user.setRole(authRoleRepository.getAuthRoleById(3L).get());
     }
+
 
     @Override
     public Void update(AuthUserUpdateDto updateDto) {
+//        if (updateDto.getRole().getId()
+        repository.update(updateDto);
         return null;
     }
 
+    @Override
+    public Void delete(Long id) {
+        if (auditAware.getCurrentAuditor().get().equals(id)) throw new RuntimeException("403");
+        repository.deleteSoft(id);
+        return null;
+    }
 
     @Override
     public List<AuthUserDto> getAll(GenericCriteria criteria) {
-        return null;
+        return mapper.toDto(repository.findAll());
     }
 
     @Override
@@ -70,7 +86,7 @@ public class AuthUserServiceImpl extends
 
     @Override
     public AuthUserDto get(Long id) {
-        return null;
+        return mapper.toDto(repository.getById(id));
     }
 
     @Override
