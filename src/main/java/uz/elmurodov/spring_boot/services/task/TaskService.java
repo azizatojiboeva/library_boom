@@ -16,4 +16,5 @@ public interface TaskService extends GenericCrudService<
         GenericCriteria,
         Long
         > {
+
 }

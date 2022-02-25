@@ -15,6 +15,8 @@ public class UserDetails implements org.springframework.security.core.userdetail
     private Long id;
     @Getter
     private Organization organizationId;
+    @Getter
+    private AuthRole role;
     private String username;
     private String password;
     private UUID code;
@@ -22,6 +24,8 @@ public class UserDetails implements org.springframework.security.core.userdetail
     private boolean superUser;
     private boolean blocked;
     private boolean active;
+    @Getter
+    private AuthRole role;
     private Set<GrantedAuthority> authorities;
 
 
@@ -34,6 +38,7 @@ public class UserDetails implements org.springframework.security.core.userdetail
         this.superUser = user.isSuperUser();
         this.blocked = user.isBlocked();
         this.active = user.isActive();
+        this.role=user.getRole();
         processAuthorities(user);
     }
 

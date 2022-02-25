@@ -7,16 +7,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import uz.elmurodov.spring_boot.controller.base.AbstractController;
 import uz.elmurodov.spring_boot.dto.comment.CommentCreateDto;
 import uz.elmurodov.spring_boot.services.comment.CommentService;
+import uz.elmurodov.spring_boot.services.comment.CommentServiceImpl;
 
 /**
  * @Author Aziza Tojiboyeva
  */
 @Controller
 @RequestMapping("/comment/*")
-public class CommentController extends AbstractController<CommentService> {
+public class CommentController extends AbstractController<CommentServiceImpl> {
 
 
-    public CommentController(CommentService service) {
+    public CommentController(CommentServiceImpl service) {
         super(service);
     }
 

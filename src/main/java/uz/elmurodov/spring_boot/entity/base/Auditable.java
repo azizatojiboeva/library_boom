@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -11,35 +14,50 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class Auditable implements BaseEntity {
+public abstract class Auditable implements BaseEntity, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private Long id;
-
-    @CreatedBy
-    @Column(columnDefinition = "bigint default 1", updatable = false,name = "create_By")
-    protected Long createdBy;
+    @Column(unique = true, nullable = false)
+    protected Long id;
 
     @CreatedDate
-    @Column(columnDefinition = "timestamp default '2022-02-21T11:29:32.770609700'", updatable = false , name = "create_At")
-    protected LocalDateTime createdAt;
+    @CreationTimestamp
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP default NOW()")
+    private LocalDateTime createdAt;
 
-    @LastModifiedBy
-    @Column(columnDefinition = "bigint default 1")
-    protected Long lastModifiedBy;
+    @CreatedBy
+    @Column(name = "created_by", columnDefinition = "bigint default 1")
+    private Long createdBy;
 
     @LastModifiedDate
-    @Column(columnDefinition = "timestamp default '2022-02-21T11:29:32.770609700'")
-    protected LocalDateTime lastModifiedAt;
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
+
+
+    @LastModifiedBy
+    @Column(name = "updated_by",columnDefinition = "bigint default 1")
+    private Long updatedBy;
+
+    @Column(name = "is_deleted", nullable = true, columnDefinition = "boolean default false")
+    private boolean deleted=false;
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
 
 }

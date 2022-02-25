@@ -71,6 +71,11 @@ public class OrganizationServiceImpl extends
 
 
     @Override
+    public List<OrganizationDto> getAll(Long id) {
+        return null;
+    }
+
+    @Override
     public OrganizationDto get(Long id) {
         Organization organization = repository.findById(id).orElseThrow(() -> {
             throw new RuntimeException("Not Found");

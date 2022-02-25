@@ -20,8 +20,6 @@ public class Comment extends Auditable {
    @Column(name = "task_id", nullable = false)
     private Long task_id;
 
-
-   @Column(name = "type_id", nullable = false)
-    private Long commentType;
+    private String commentType;
 
 }

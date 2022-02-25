@@ -74,6 +74,11 @@ public class ProjectColumnServiceImpl extends AbstractService<
     }
 
     @Override
+    public List<ProjectColumnDto> getAll(Long id) {
+        return null;
+    }
+
+    @Override
     public ProjectColumnDto get(Long id) {
         ProjectColumn projectColumn = repository.getById(id);
         return mapper.toDto(projectColumn);

@@ -12,6 +12,6 @@ import uz.elmurodov.spring_boot.dto.base.Dto;
 public class CommentCreateDto implements Dto {
     private String commentBody;
     private Long taskId;
-    private Long commentType;
+    private String commentType;
 
 }
