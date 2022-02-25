@@ -28,9 +28,9 @@ public class AuthUser extends Auditable {
 //    @Column(columnDefinition = "default false")
     private boolean isSuperUser;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "organization_id", nullable = true)
-    private Long organizationId;
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "organization_id", nullable = true)
+    private Organization organizationId;
 
     @Column(nullable = true)
     private UUID code;

@@ -1,7 +1,10 @@
 package uz.elmurodov.spring_boot.services.auth;
 
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import uz.elmurodov.spring_boot.config.security.UserDetails;
 import uz.elmurodov.spring_boot.criteria.GenericCriteria;
 import uz.elmurodov.spring_boot.dto.auth.AuthUserCreateDto;
 import uz.elmurodov.spring_boot.dto.auth.AuthUserDto;
@@ -16,7 +19,6 @@ import uz.elmurodov.spring_boot.utils.BaseUtils;
 import uz.elmurodov.spring_boot.utils.validators.auth.AuthUserValidator;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class AuthUserServiceImpl extends
@@ -24,47 +26,64 @@ public class AuthUserServiceImpl extends
         implements AuthUserService {
 
     private final PasswordEncoder encoder;
+    private final AuditAwareImpl auditAware;
     private final AuthRoleRepository authRoleRepository;
 
     protected AuthUserServiceImpl(AuthUserRepository repository,
                                   AuthUserMapper mapper,
                                   AuthUserValidator validator,
-                                  BaseUtils baseUtils, PasswordEncoder encoder, AuthRoleRepository authRoleRepository) {
+                                  BaseUtils baseUtils,
+                                  PasswordEncoder encoder,
+                                  AuthRoleRepository authRoleRepository,
+                                  AuditAwareImpl auditAware) {
         super(repository, mapper, validator, baseUtils);
         this.encoder = encoder;
+        this.auditAware = auditAware;
         this.authRoleRepository = authRoleRepository;
     }
 
     @Override
     public Long create(AuthUserCreateDto createDto) {
+
         AuthUser user = mapper.fromCreateDto(createDto);
         user.setPassword(encoder.encode(createDto.getPassword()));
-        user.setOrganizationId(1L);
-        user.setRole(authRoleRepository.getAuthRoleById(1L).get());
-        user.setCreatedBy(new AuditAwareImpl().getCurrentAuditor().get());
+//        if (auditAware.getUserDetails().getRole().getCode().equals("SUPER_ADMIN")) {
+//        if (auditAware.getUserDetails().getAuthorities().contains(new SimpleGrantedAuthority("ROLE_SUPER_ADMIN"))) {
+//       if (UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//) {
+            user.setRole(authRoleRepository.getAuthRoleById(2L).get());
+//        } else {
+//            user.setRole(authRoleRepository.getAuthRoleById(3L).get());
+//        }
+        user.setOrganizationId(auditAware.getUserDetails().getOrganizationId());
+        user.setCreatedBy(auditAware.getCurrentAuditor().get());
         repository.save(user);
         return user.getId();
     }
 
-    @Override
-    public Void delete(Long id) {
-        return null;
-    }
 
     @Override
     public Void update(AuthUserUpdateDto updateDto) {
+//        if (updateDto.getRole().getId()
+        repository.update(updateDto);
         return null;
     }
 
+    @Override
+    public Void delete(Long id) {
+        if (auditAware.getCurrentAuditor().get().equals(id)) throw new RuntimeException("403");
+        repository.deleteSoft(id);
+        return null;
+    }
 
     @Override
     public List<AuthUserDto> getAll(GenericCriteria criteria) {
-        return null;
+        return mapper.toDto(repository.findAll());
     }
 
     @Override
     public AuthUserDto get(Long id) {
-        return null;
+        return mapper.toDto(repository.getById(id));
     }
 
     @Override

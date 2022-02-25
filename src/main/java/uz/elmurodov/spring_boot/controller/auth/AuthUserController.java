@@ -1,15 +1,16 @@
 package uz.elmurodov.spring_boot.controller.auth;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import uz.elmurodov.spring_boot.controller.base.AbstractController;
+import uz.elmurodov.spring_boot.criteria.GenericCriteria;
 import uz.elmurodov.spring_boot.dto.auth.AuthUserCreateDto;
-import uz.elmurodov.spring_boot.entity.auth.AuthRole;
+import uz.elmurodov.spring_boot.dto.auth.AuthUserUpdateDto;
 import uz.elmurodov.spring_boot.services.auth.AuthUserService;
-
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/auth/*")
@@ -28,5 +29,42 @@ public class AuthUserController extends AbstractController<AuthUserService> {
         service.create(dto);
         return "redirect:/index/index";
     }
+
+    @RequestMapping("detail/{id}/")
+    public String detail(@PathVariable(name = "id") Long id, Model model) {
+        model.addAttribute("user", service.get(id));
+        return "user/detail";
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String listPage(Model model) {
+        model.addAttribute("users", service.getAll(new GenericCriteria()));
+        return "user/list";
+    }
+
+
+    @RequestMapping(value = "update/{id}/", method = RequestMethod.GET)
+    public String updatePage(Model model, @PathVariable(name = "id") Long id) {
+        model.addAttribute("user", service.get(id));
+        return "user/update";
+    }
+
+    @RequestMapping(value = "update/{id}/", method = RequestMethod.PATCH)
+    public String update(@ModelAttribute AuthUserUpdateDto dto) {
+        service.update(dto);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
+    public String deletePage(Model model, @PathVariable(name = "id") Long id) {
+        model.addAttribute("user", service.get(id));
+        return "user/delete";
+    }
+
+//    @RequestMapping(value = "", method = RequestMethod.GET)
+//    public String listPage() {
+//        return "index/index";
+//    }
+
 
 }

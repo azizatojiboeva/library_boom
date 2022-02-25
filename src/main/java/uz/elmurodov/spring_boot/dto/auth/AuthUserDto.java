@@ -8,6 +8,6 @@ import uz.elmurodov.spring_boot.dto.base.GenericDto;
 @Getter
 @Builder(builderMethodName = "childBuilder")
 public class AuthUserDto extends GenericDto {
-
-    private String name;
+    private String username;
+    private String email;
 }
