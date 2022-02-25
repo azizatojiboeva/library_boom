@@ -5,6 +5,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import uz.elmurodov.spring_boot.entity.auth.AuthRole;
 import uz.elmurodov.spring_boot.entity.auth.AuthUser;
+import uz.elmurodov.spring_boot.entity.organization.Organization;
+
 import java.util.*;
 
 public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
@@ -12,10 +14,12 @@ public class UserDetails implements org.springframework.security.core.userdetail
     @Getter
     private Long id;
     @Getter
-    private Long organizationId;
+    private Organization organizationId;
     private String username;
     private String password;
     private UUID code;
+    @Getter
+    private boolean superUser;
     private boolean blocked;
     private boolean active;
     private Set<GrantedAuthority> authorities;
@@ -23,10 +27,11 @@ public class UserDetails implements org.springframework.security.core.userdetail
 
     public UserDetails(AuthUser user) {
         this.id = user.getId();
-        this.organizationId=user.getOrganizationId();
+        this.organizationId = user.getOrganizationId();
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.code = user.getCode();
+        this.superUser = user.isSuperUser();
         this.blocked = user.isBlocked();
         this.active = user.isActive();
         processAuthorities(user);

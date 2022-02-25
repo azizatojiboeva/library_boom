@@ -1,10 +1,7 @@
 package uz.elmurodov.spring_boot.services.auth;
 
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import uz.elmurodov.spring_boot.config.security.UserDetails;
 import uz.elmurodov.spring_boot.criteria.GenericCriteria;
 import uz.elmurodov.spring_boot.dto.auth.AuthUserCreateDto;
 import uz.elmurodov.spring_boot.dto.auth.AuthUserDto;
@@ -19,6 +16,7 @@ import uz.elmurodov.spring_boot.utils.BaseUtils;
 import uz.elmurodov.spring_boot.utils.validators.auth.AuthUserValidator;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class AuthUserServiceImpl extends
@@ -44,21 +42,21 @@ public class AuthUserServiceImpl extends
 
     @Override
     public Long create(AuthUserCreateDto createDto) {
-
         AuthUser user = mapper.fromCreateDto(createDto);
         user.setPassword(encoder.encode(createDto.getPassword()));
-//        if (auditAware.getUserDetails().getRole().getCode().equals("SUPER_ADMIN")) {
-//        if (auditAware.getUserDetails().getAuthorities().contains(new SimpleGrantedAuthority("ROLE_SUPER_ADMIN"))) {
-//       if (UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//) {
-            user.setRole(authRoleRepository.getAuthRoleById(2L).get());
-//        } else {
-//            user.setRole(authRoleRepository.getAuthRoleById(3L).get());
-//        }
-        user.setOrganizationId(auditAware.getUserDetails().getOrganizationId());
+        user.setOrganizationId(auditAware.getCredentials().getOrganizationId());
         user.setCreatedBy(auditAware.getCurrentAuditor().get());
+        user.setCode(UUID.randomUUID());
+        setAuthRole(user);
         repository.save(user);
         return user.getId();
+    }
+
+    private void setAuthRole(AuthUser user) {
+        if (auditAware.getCredentials().isSuperUser())
+            user.setRole(authRoleRepository.getAuthRoleById(2L).get());
+        else
+            user.setRole(authRoleRepository.getAuthRoleById(3L).get());
     }
 
 
