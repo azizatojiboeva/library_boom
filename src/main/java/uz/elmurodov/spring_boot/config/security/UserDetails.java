@@ -18,6 +18,8 @@ public class UserDetails implements org.springframework.security.core.userdetail
     private UUID code;
     private boolean blocked;
     private boolean active;
+    @Getter
+    private AuthRole role;
     private Set<GrantedAuthority> authorities;
 
 
@@ -29,6 +31,7 @@ public class UserDetails implements org.springframework.security.core.userdetail
         this.code = user.getCode();
         this.blocked = user.isBlocked();
         this.active = user.isActive();
+        this.role=user.getRole();
         processAuthorities(user);
     }
 

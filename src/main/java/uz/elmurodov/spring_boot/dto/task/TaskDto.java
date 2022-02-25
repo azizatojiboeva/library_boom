@@ -17,8 +17,8 @@ public class TaskDto extends GenericDto {
 
     private String name;
     private String description;
-    private Long level;
-    private Long priority;
+    private String level;
+    private String priority;
     private LocalDateTime deadline;
     private Long projectId;
     private Long columnId;

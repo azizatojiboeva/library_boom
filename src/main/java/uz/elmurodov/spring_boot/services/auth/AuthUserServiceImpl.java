@@ -64,6 +64,11 @@ public class AuthUserServiceImpl extends
     }
 
     @Override
+    public List<AuthUserDto> getAll(Long id) {
+        return null;
+    }
+
+    @Override
     public AuthUserDto get(Long id) {
         return null;
     }

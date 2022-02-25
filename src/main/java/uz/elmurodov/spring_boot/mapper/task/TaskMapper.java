@@ -24,22 +24,15 @@ public interface TaskMapper extends BaseMapper<
         > {
 
     @Override
-    @Mapping(target = "level",ignore = true)
-    @Mapping(target = "priority",ignore = true)
+
     public TaskDto toDto(Task task);
 
     @Override
-    @Mapping(target = "priority",ignore = true)
-    @Mapping(target = "level",ignore = true)
     public List<TaskDto> toDto(List<Task> e);
 
     @Override
-    @Mapping(target = "priority",ignore = true)
-    @Mapping(target = "level",ignore = true)
     public Task fromCreateDto(TaskCreateDto taskCreateDto);
 
-    @Override
-    @Mapping(target = "priority",ignore = true)
-    @Mapping(target = "level",ignore = true)
+
     public Task fromUpdateDto(TaskUpdateDto taskUpdateDto);
 }

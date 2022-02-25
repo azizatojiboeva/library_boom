@@ -5,16 +5,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import uz.elmurodov.spring_boot.controller.base.AbstractController;
 import uz.elmurodov.spring_boot.services.task.TaskMemberService;
+import uz.elmurodov.spring_boot.services.task.TaskMemberServiceImpl;
 
 /**
  * @Author Aziza Tojiboyeva
  */
 @Controller
 @RequestMapping("/task/member/*")
-public class TaskMemberController extends AbstractController<TaskMemberService> {
+public class TaskMemberController extends AbstractController<TaskMemberServiceImpl> {
 
     @Autowired
-    public TaskMemberController(TaskMemberService service) {
+    public TaskMemberController(TaskMemberServiceImpl service) {
         super(service);
     }
+
+
 }

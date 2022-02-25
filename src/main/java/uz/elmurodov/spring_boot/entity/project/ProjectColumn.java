@@ -24,7 +24,6 @@ public class ProjectColumn extends Auditable {
 
     private int position;
 
-
     private boolean active;
 
 }

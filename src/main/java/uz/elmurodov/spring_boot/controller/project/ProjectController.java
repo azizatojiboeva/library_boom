@@ -8,12 +8,13 @@ import uz.elmurodov.spring_boot.controller.base.AbstractController;
 import uz.elmurodov.spring_boot.dto.project.ProjectCreateDto;
 import uz.elmurodov.spring_boot.dto.project.ProjectUpdateDto;
 import uz.elmurodov.spring_boot.services.project.ProjectService;
+import uz.elmurodov.spring_boot.services.project.ProjectServiceImpl;
 
 @Controller
 @RequestMapping("/project/*")
-public class ProjectController extends AbstractController<ProjectService> {
+public class ProjectController extends AbstractController<ProjectServiceImpl> {
     @Autowired
-    public ProjectController(ProjectService service) {
+    public ProjectController(ProjectServiceImpl service) {
         super(service);
     }
 

@@ -20,17 +20,13 @@ public class Task extends Auditable {
 
     private String description;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "level_code", nullable = false)
-    private Level level;
+    private String level;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "priority_code", nullable = false)
-    private Priority priority;
+    private String priority;
 
     @Column(columnDefinition = " timestamp ")
     private LocalDateTime deadline;

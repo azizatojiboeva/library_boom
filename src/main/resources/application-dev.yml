@@ -10,6 +10,9 @@ spring:
       ddl-auto: update
     open-in-view: false
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        format_sql:true
   banner:
     image:
       location: classpath:banner.txt

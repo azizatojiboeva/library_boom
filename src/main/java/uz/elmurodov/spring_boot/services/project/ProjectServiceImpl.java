@@ -53,6 +53,11 @@ public class ProjectServiceImpl extends AbstractService<
     }
 
     @Override
+    public List<ProjectDto> getAll(Long id) {
+        return null;
+    }
+
+    @Override
     public ProjectDto get(Long id) {
         return null;
     }
