@@ -19,7 +19,6 @@ public class OrganizationValidator extends AbstractValidator<OrganizationCreateD
 
     @Override
     public void validateKey(Long id) throws ValidationException {
-
     }
 
     @Override

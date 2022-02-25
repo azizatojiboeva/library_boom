@@ -17,6 +17,7 @@ public class ProjectController extends AbstractController<ProjectService> {
         super(service);
     }
 
+
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public String createPage() {
         return "project/create";

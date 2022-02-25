@@ -11,7 +11,11 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class AuthRole extends Auditable {
+public class AuthRole  {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false)
     private String name;

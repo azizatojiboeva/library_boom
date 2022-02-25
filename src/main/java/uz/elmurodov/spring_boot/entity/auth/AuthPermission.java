@@ -9,7 +9,11 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-public class AuthPermission extends Auditable {
+public class AuthPermission {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false)
     private String name;

@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @SpringBootApplication
 @EnableJpaAuditing
-public class Application /*implements CommandLineRunner */{
+public class Application /*implements CommandLineRunner*/ {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
@@ -39,9 +39,11 @@ public class Application /*implements CommandLineRunner */{
     public void run(String... args) throws Exception {
 
         AuthUser admin = new AuthUser();
-        admin.setUsername("admin");
-        admin.setPassword(passwordEncoder.encode("admin123"));
+        admin.setUsername("1");
+        admin.setPassword(passwordEncoder.encode("1"));
         AuthRole adminRole = authRoleRepository.findAuthRoleByCode("ADMIN").get();
+        admin.setEmail("a1@.gmail.com");
+        admin.setOrganizationId(1L);
         admin.setRole(adminRole);
         admin.setCode(UUID.randomUUID());
 
@@ -50,4 +52,6 @@ public class Application /*implements CommandLineRunner */{
 //        authUserRepository.saveAll(List.of(user1, user2));
 
     }
+
+
 }
