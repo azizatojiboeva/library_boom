@@ -47,8 +47,6 @@ public class ProjectController extends AbstractController<ProjectServiceImpl> {
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public String listPage(Model projects) {
-
-
         return "project/list";
     }
 

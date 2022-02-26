@@ -3,10 +3,7 @@ package uz.elmurodov.spring_boot.services.project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uz.elmurodov.spring_boot.criteria.GenericCriteria;
-import uz.elmurodov.spring_boot.dto.project.ProjectColumnCreateDto;
-import uz.elmurodov.spring_boot.dto.project.ProjectCreateDto;
-import uz.elmurodov.spring_boot.dto.project.ProjectDto;
-import uz.elmurodov.spring_boot.dto.project.ProjectUpdateDto;
+import uz.elmurodov.spring_boot.dto.project.*;
 import uz.elmurodov.spring_boot.entity.base.AuditAwareImpl;
 import uz.elmurodov.spring_boot.entity.project.Project;
 import uz.elmurodov.spring_boot.mapper.project.ProjectMapper;
@@ -87,6 +84,7 @@ public class ProjectServiceImpl extends AbstractService<
 //        });
         return dtos;
 
+    }
 
     @Override
     public ProjectDto get(Long id) {
@@ -97,6 +95,4 @@ public class ProjectServiceImpl extends AbstractService<
     public Long totalCount(GenericCriteria criteria) {
         return null;
     }
-
-
 }

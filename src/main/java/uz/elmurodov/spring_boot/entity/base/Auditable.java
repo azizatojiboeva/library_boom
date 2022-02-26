@@ -25,7 +25,6 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class Auditable implements BaseEntity, Serializable {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
@@ -36,19 +35,22 @@ public abstract class Auditable implements BaseEntity, Serializable {
     @Column(name = "created_at", columnDefinition = "TIMESTAMP default NOW()")
     private LocalDateTime createdAt;
 
+    @CreatedBy
+    @Column(name = "created_by", columnDefinition = "bigint default 1")
+    private Long createdBy;
+
     @LastModifiedDate
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+
+    @LastModifiedBy
+    @Column(name = "updated_by",columnDefinition = "bigint default 1")
+    private Long updatedBy;
+
     @Column(name = "is_deleted", nullable = true, columnDefinition = "boolean default false")
     private boolean deleted=false;
 
-    public boolean isDeleted() {
-        return deleted;
-    }
 
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
 
 }
