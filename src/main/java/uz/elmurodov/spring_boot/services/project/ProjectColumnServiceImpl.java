@@ -49,10 +49,6 @@ public class ProjectColumnServiceImpl extends AbstractService<
         return null;
     }
 
-    @Override
-    public List<ProjectColumnDto> getAll(Long id) {
-        return null;
-    }
 
     @Override
     public List<ProjectColumnDto> getAll(Long id) {
@@ -68,4 +64,6 @@ public class ProjectColumnServiceImpl extends AbstractService<
     public Long totalCount(GenericCriteria criteria) {
         return null;
     }
+
+
 }

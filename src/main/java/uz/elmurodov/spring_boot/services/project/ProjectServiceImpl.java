@@ -3,9 +3,8 @@ package uz.elmurodov.spring_boot.services.project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uz.elmurodov.spring_boot.criteria.GenericCriteria;
-import uz.elmurodov.spring_boot.dto.project.ProjectCreateDto;
-import uz.elmurodov.spring_boot.dto.project.ProjectDto;
-import uz.elmurodov.spring_boot.dto.project.ProjectUpdateDto;
+import uz.elmurodov.spring_boot.dto.auth.AuthUserDto;
+import uz.elmurodov.spring_boot.dto.project.*;
 import uz.elmurodov.spring_boot.entity.base.AuditAwareImpl;
 import uz.elmurodov.spring_boot.entity.project.Project;
 import uz.elmurodov.spring_boot.mapper.project.ProjectMapper;
@@ -27,6 +26,7 @@ public class ProjectServiceImpl extends AbstractService<
 
     private final AuditAwareImpl auditAware;
     private final ProjectColumnService projectColumnService;
+    private final ProjectMemberService projectMemberService;
 
     @Autowired
     protected ProjectServiceImpl(
@@ -35,10 +35,12 @@ public class ProjectServiceImpl extends AbstractService<
             ProjectValidator validator,
             BaseUtils baseUtils,
             AuditAwareImpl auditAware,
-            ProjectColumnService projectColumnService) {
+            ProjectColumnService projectColumnService,
+            ProjectMemberService projectMemberService) {
         super(repository, mapper, validator, baseUtils);
         this.auditAware = auditAware;
         this.projectColumnService = projectColumnService;
+        this.projectMemberService = projectMemberService;
     }
 
     @Override
@@ -67,15 +69,21 @@ public class ProjectServiceImpl extends AbstractService<
     }
 
     @Override
-    public List<ProjectDto> getAll(Long id) {
-//        projectColumnService.getAll();
-
-        return mapper.toDto(repository.getAll());
-    }
-
-    @Override
-    public List<ProjectDto> getAll(Long id) {
-        return null;
+    public List<ProjectDto> getAll(Long organizationId) {
+        List<ProjectDto> dtos = mapper.toDto(repository.getAll());
+        for (ProjectDto dto : dtos) {
+            List<ProjectColumnDto> columns = projectColumnService.getAll(dto.getId());
+            dto.setColumns(columns);
+            List<ProjectMemberDto> members = projectMemberService.getAll(dto.getId());
+            dto.setMembers(members);
+        }
+//        dtos.forEach(dto->{
+//            List<ProjectColumnDto> columns = projectColumnService.getAll(dto.getId());
+//            List<ProjectMemberDto> members = projectMemberService.getAll(dto.getId());
+//            dto.setColumns(columns);
+//            dto.setMembers(members);
+//        });
+        return dtos;
     }
 
     @Override

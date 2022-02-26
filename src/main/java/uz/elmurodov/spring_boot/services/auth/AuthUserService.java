@@ -6,6 +6,8 @@ import uz.elmurodov.spring_boot.dto.auth.AuthUserDto;
 import uz.elmurodov.spring_boot.dto.auth.AuthUserUpdateDto;
 import uz.elmurodov.spring_boot.services.base.GenericCrudService;
 
+import java.util.List;
+
 public interface AuthUserService extends GenericCrudService<
         AuthUserDto,
         AuthUserCreateDto,
@@ -13,4 +15,5 @@ public interface AuthUserService extends GenericCrudService<
         GenericCriteria,
         Long
         > {
+    List<AuthUserDto> getAllProjectMembers(List<Long> membersId);
 }
