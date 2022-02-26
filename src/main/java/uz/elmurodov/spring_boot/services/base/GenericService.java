@@ -17,7 +17,7 @@ public interface GenericService<
         C extends GenericCriteria,
         K extends Serializable> extends BaseService {
 
-    List<D> getAll(C criteria);
+    List<D> getAll(Long id);
 
     D get(K id);
 

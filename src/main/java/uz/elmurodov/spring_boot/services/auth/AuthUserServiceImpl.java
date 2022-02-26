@@ -75,7 +75,7 @@ public class AuthUserServiceImpl extends
     }
 
     @Override
-    public List<AuthUserDto> getAll(GenericCriteria criteria) {
+    public List<AuthUserDto> getAll(Long id) {
         return mapper.toDto(repository.findAll());
     }
 

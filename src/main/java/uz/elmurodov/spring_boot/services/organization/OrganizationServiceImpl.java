@@ -59,7 +59,7 @@ public class OrganizationServiceImpl extends
     }
 
     @Override
-    public List<OrganizationDto> getAll(GenericCriteria criteria) {
+    public List<OrganizationDto> getAll(Long id) {
         return mapper.toDto(repository.getAll());
     }
 

@@ -22,7 +22,7 @@ public class ProjectColumnServiceImpl extends AbstractService<
         ProjectColumnRepository,
         ProjectColumnMapper,
         ProjectColumnValidator
-        > implements ProjectColumnService{
+        > implements ProjectColumnService {
 
     @Autowired
     protected ProjectColumnServiceImpl(
@@ -50,7 +50,7 @@ public class ProjectColumnServiceImpl extends AbstractService<
     }
 
     @Override
-    public List<ProjectColumnDto> getAll(GenericCriteria criteria) {
+    public List<ProjectColumnDto> getAll(Long id) {
         return null;
     }
 

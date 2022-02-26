@@ -3,7 +3,6 @@ package uz.elmurodov.spring_boot.services.project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uz.elmurodov.spring_boot.criteria.GenericCriteria;
-import uz.elmurodov.spring_boot.dto.project.ProjectColumnCreateDto;
 import uz.elmurodov.spring_boot.dto.project.ProjectCreateDto;
 import uz.elmurodov.spring_boot.dto.project.ProjectDto;
 import uz.elmurodov.spring_boot.dto.project.ProjectUpdateDto;
@@ -27,15 +26,19 @@ public class ProjectServiceImpl extends AbstractService<
         ProjectValidator> implements ProjectService {
 
     private final AuditAwareImpl auditAware;
+    private final ProjectColumnService projectColumnService;
 
     @Autowired
     protected ProjectServiceImpl(
             ProjectRepository repository,
             ProjectMapper mapper,
             ProjectValidator validator,
-            BaseUtils baseUtils, AuditAwareImpl auditAware, ProjectColumnService projectColumnService) {
+            BaseUtils baseUtils,
+            AuditAwareImpl auditAware,
+            ProjectColumnService projectColumnService) {
         super(repository, mapper, validator, baseUtils);
         this.auditAware = auditAware;
+        this.projectColumnService = projectColumnService;
     }
 
     @Override
@@ -43,6 +46,7 @@ public class ProjectServiceImpl extends AbstractService<
         if (!auditAware.getCredentials().getRole().getCode().equals("ADMIN")) throw new RuntimeException("403");
         Project project = mapper.fromCreateDto(createDto);
         project.setOrganization(auditAware.getCredentials().getOrganizationId());
+        project.setCreatedBy(auditAware.getCurrentAuditor().get());
         repository.save(project);
         return project.getId();
     }
@@ -63,7 +67,9 @@ public class ProjectServiceImpl extends AbstractService<
     }
 
     @Override
-    public List<ProjectDto> getAll(GenericCriteria criteria) {
+    public List<ProjectDto> getAll(Long id) {
+//        projectColumnService.getAll();
+
         return mapper.toDto(repository.getAll());
     }
 
