@@ -29,4 +29,6 @@ public interface AuthUserRepository extends JpaRepository<AuthUser, Long>, Abstr
 
     @Query(value = "select * from etm_b4.auth_user where not deleted", nativeQuery = true)
     List<AuthUser> getAll();
+    @Query("select A from AuthUser A where  A.deleted = false and  A.role.id = 1")
+    List<AuthUser> findAllUser();
 }

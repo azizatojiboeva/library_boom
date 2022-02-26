@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import uz.elmurodov.spring_boot.controller.base.AbstractController;
 import uz.elmurodov.spring_boot.dto.organization.OrganizationCreateDto;
+import uz.elmurodov.spring_boot.dto.organization.OrganizationDto;
 import uz.elmurodov.spring_boot.dto.organization.OrganizationUpdateDto;
 import uz.elmurodov.spring_boot.services.organization.OrganizationService;
 
@@ -22,12 +23,7 @@ public class OrganizationController extends AbstractController<OrganizationServi
         super(service);
     }
 
-//    @RequestMapping(value = "")
-//    public String listsPage(Model model, Model session) {
-//        model.addAttribute("organizations", service.getAll(new GenericCriteria()));
-//        return "index/index";
-//    }
-//
+
 
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public String createPage() {
@@ -40,35 +36,26 @@ public class OrganizationController extends AbstractController<OrganizationServi
         return "redirect:/home/";
     }
 
-//    @RequestMapping("detail/{id}/")
-//    public String detail(Model model, @PathVariable(name = "id") Long id) {
-//        model.addAttribute("organization", service.get(id));
-//
-//        return "organization/detail";
-//    }
 
-
-    @RequestMapping(value = "detail" , method = RequestMethod.GET)
-    public String detailPage(){
+    @RequestMapping(value = "detail/{org_id}" , method = RequestMethod.GET)
+    public String detailPage(@PathVariable(name = "org_id") Long id, Model model){
+        OrganizationDto organizationDto = service.get(id);
+        model.addAttribute("org",organizationDto);
         return "organization/detail";
     }
-//    @RequestMapping(value = "", method = RequestMethod.GET)
-//    public String listPage(Model model) {
-//        model.addAttribute("organizations", service.getAll());
-//        return "organization/list";
-//    }
 
 
-    @RequestMapping(value = "update/{id}/", method = RequestMethod.GET)
-    public String updatePage(Model model, @PathVariable(name = "id") Long id) {
+    @RequestMapping(value = "update/{org_id}", method = RequestMethod.GET)
+    public String updatePage(Model model, @PathVariable(name = "org_id") Long id) {
         model.addAttribute("organization", service.get(id));
         return "organization/update";
     }
 
-    @RequestMapping(value = "update/{id}/", method = RequestMethod.PATCH)
-    public String update(@ModelAttribute OrganizationUpdateDto dto) {
+    @RequestMapping(value = "update/{id}", method = RequestMethod.POST)
+    public String update(  @PathVariable(name = "id") Long id,  @ModelAttribute OrganizationUpdateDto dto) {
+        dto.setId(id);
         service.update(dto);
-        return "redirect:/";
+        return "redirect:/home/";
     }
 
     @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
@@ -77,9 +64,5 @@ public class OrganizationController extends AbstractController<OrganizationServi
         return "organization/delete";
     }
 
-//    @RequestMapping(value = "", method = RequestMethod.GET)
-//    public String listPage(Model model) {
-//        model.addAttribute("organizations", service.getAll(new GenericCriteria()));
-//        return "organization/list";
-//    }
+
 }

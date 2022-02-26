@@ -1,9 +1,10 @@
 package uz.elmurodov.spring_boot.services.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import uz.elmurodov.spring_boot.criteria.GenericCriteria;
-import uz.elmurodov.spring_boot.dto.project.ProjectColumnCreateDto;
 import uz.elmurodov.spring_boot.dto.project.ProjectCreateDto;
 import uz.elmurodov.spring_boot.dto.project.ProjectDto;
 import uz.elmurodov.spring_boot.dto.project.ProjectUpdateDto;
@@ -12,10 +13,14 @@ import uz.elmurodov.spring_boot.entity.project.Project;
 import uz.elmurodov.spring_boot.mapper.project.ProjectMapper;
 import uz.elmurodov.spring_boot.reposiroty.project.ProjectRepository;
 import uz.elmurodov.spring_boot.services.base.AbstractService;
+import uz.elmurodov.spring_boot.services.file.FileStorageService;
 import uz.elmurodov.spring_boot.utils.BaseUtils;
 import uz.elmurodov.spring_boot.utils.validators.project.ProjectValidator;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @Author Aziza Tojiboyeva
@@ -27,21 +32,28 @@ public class ProjectServiceImpl extends AbstractService<
         ProjectValidator> implements ProjectService {
 
     private final AuditAwareImpl auditAware;
+    private final FileStorageService fileStorageService;
+
 
     @Autowired
     protected ProjectServiceImpl(
             ProjectRepository repository,
             ProjectMapper mapper,
             ProjectValidator validator,
-            BaseUtils baseUtils, AuditAwareImpl auditAware, ProjectColumnService projectColumnService) {
+            BaseUtils baseUtils, AuditAwareImpl auditAware, ProjectColumnService projectColumnService, FileStorageService fileStorageService) {
         super(repository, mapper, validator, baseUtils);
         this.auditAware = auditAware;
+        this.fileStorageService = fileStorageService;
     }
 
     @Override
     public Long create(ProjectCreateDto createDto) {
         if (!auditAware.getCredentials().getRole().getCode().equals("ADMIN")) throw new RuntimeException("403");
+
+        MultipartFile file = createDto.getTz();
+        String tzPath = fileStorageService.store(file);
         Project project = mapper.fromCreateDto(createDto);
+        project.setTzPath(tzPath);
         project.setOrganization(auditAware.getCredentials().getOrganizationId());
         repository.save(project);
         return project.getId();
@@ -64,16 +76,28 @@ public class ProjectServiceImpl extends AbstractService<
 
     @Override
     public List<ProjectDto> getAll(GenericCriteria criteria) {
-        return mapper.toDto(repository.getAll());
-    }
-
-    @Override
-    public List<ProjectDto> getAll(Long id) {
         return null;
     }
 
     @Override
+    public List<ProjectDto> getAll(Long id) {
+       List<Project> projects = repository.findAll(Sort.by("id"));
+     //   List<Project> projects = repository.getAll(id);
+        List<ProjectDto> projectsList=new ArrayList<>();
+        projects.sort(Comparator.comparing(project -> project.getOrganization().getId().equals(id)));
+        for (Project project : projects) {
+            if(Objects.equals(project.getOrganization().getId(), id) && !project.isDeleted()){
+                ProjectDto projectDto = mapper.toDto(project);
+                projectDto.setFinishDate(project.getFinishDate());
+                projectsList.add(projectDto);
+            }
+        }
+        return projectsList;
+    }
+
+    @Override
     public ProjectDto get(Long id) {
+
         return mapper.toDto(repository.getProject(id));
     }
 

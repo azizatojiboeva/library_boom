@@ -1,6 +1,7 @@
 package uz.elmurodov.spring_boot.mapper.project;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 import uz.elmurodov.spring_boot.dto.project.ProjectCreateDto;
 import uz.elmurodov.spring_boot.dto.project.ProjectDto;
@@ -22,9 +23,11 @@ public interface ProjectMapper extends BaseMapper<
         ProjectUpdateDto>, uz.elmurodov.spring_boot.mapper.base.Mapper {
 
     @Override
+    @Mapping(target = "finishDate", ignore = true)
     public ProjectDto toDto(Project project) ;
 
     @Override
+    @Mapping(target = "finishDate", ignore = true)
     public List<ProjectDto> toDto(List<Project> e) ;
 
     @Override

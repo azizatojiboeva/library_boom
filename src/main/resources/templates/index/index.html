@@ -30,17 +30,17 @@
         </div>
 
         <div class="link">
-            <li class="nav-item active" sec:authorize="hasRole('ADMIN')">
+            <li class="nav-item active" sec:authorize="hasRole('ADMIN')" style="list-style-type: none">
             <a th:href="@{/organization/create}">Create New Project</a>
             </li>
 
-            <li class="nav-item active" sec:authorize="hasRole('ADMIN')">
+            <li class="nav-item active" sec:authorize="hasRole('SUPER_ADMIN')" style="list-style-type: none">
             <a th:href="@{/organization/create}">Create New Organization</a>
             </li>
 
             <a th:href="@{/home/}"> -- Home</a>
             <a th:href="@{/auth/register}">Create New Admin</a>
-            <a href="#">Contacts</a>
+            <a th:href="@{/auth/contacts}">Contacts</a>
         </div>
     </main>
 
@@ -81,6 +81,7 @@
                             <li><a class="dropdown-item" th:href="@{/auth/logout}" style="color: red">LOGOUT</a></li>
                             <li><a class="dropdown-item" th:href="@{/auth/profile}">My Profile</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
+
                         </ul>
                     </div>
 
@@ -106,18 +107,19 @@
                     <th>Name</th>
                     <th>email</th>
                     <th>code</th>
+                    <th> Show </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="org,iter : ${organizations}">
 
-                    <td th:utext="${iter.count}"></td>
-                    <td th:text="${org.name}"></td>
-                    <td th:text="${org.email}"></td>
-                    <td th:text="${org.code}"></td>
+                    <td th:utext="${iter.count}" style="border-radius: 7px ; background-color: darkslateblue"></td>
+                    <td th:text="${org.name}" style=" border-radius: 7px ; background-color: #ccc"></td>
+                    <td th:text="${org.email}" style="border-radius: 7px ; background-color: #ccc"></td>
+                    <td th:text="${org.code}" style=" border-radius: 7px ; background-color: #ccc ; margin-top :20px" ></td>
                     <td>
 <!--                        <a th:href="@{/project/project/{todo_id}(todo_id=${todo.id})}">✅</a>-->
-                        <a th:href="@{/organization/detail}" style="text-decoration: none">➕</a>
+                        <a th:href="@{/organization/detail/{org_id}(org_id=${org.id})}" style="text-decoration: none">➕</a>
                     </td>
                 </tr>
 

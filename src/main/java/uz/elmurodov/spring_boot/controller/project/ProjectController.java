@@ -10,6 +10,12 @@ import uz.elmurodov.spring_boot.dto.project.ProjectUpdateDto;
 import uz.elmurodov.spring_boot.services.project.ProjectService;
 import uz.elmurodov.spring_boot.services.project.ProjectServiceImpl;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+
+
 @Controller
 @RequestMapping("/project/*")
 public class ProjectController extends AbstractController<ProjectServiceImpl> {
@@ -20,12 +26,8 @@ public class ProjectController extends AbstractController<ProjectServiceImpl> {
 
     @RequestMapping(value = "list")
     public String homePage(Model model) {
-        return "index/index";
-    }
 
-    @RequestMapping(value = "create", method = RequestMethod.GET)
-    public String createPage() {
-        return "project/create";
+        return "index/index";
     }
 
     @RequestMapping(value = "project", method = RequestMethod.GET)
@@ -33,21 +35,30 @@ public class ProjectController extends AbstractController<ProjectServiceImpl> {
         return "index/project";
     }
 
+    @RequestMapping(value = "create", method = RequestMethod.GET)
+    public String createPage() {
+        return "project/create";
+    }
+
+    @RequestMapping(value = "create", method = RequestMethod.POST)
+    public String create(@ModelAttribute ProjectCreateDto dto, @RequestParam(name = "deadline") String deadline) {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        LocalDateTime date = LocalDateTime.parse(deadline, format);
+        dto.setFinishDate(date);
+        service.create(dto);
+        return "redirect:/home/";
+    }
+
     @RequestMapping(value = "index", method = RequestMethod.GET)
     public String indexPage() {
         return "index/index";
     }
 
-    @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String create(@ModelAttribute ProjectCreateDto dto) {
-        service.create(dto);
-        return "redirect:/";
-    }
 
-    @RequestMapping("detail/{id}/")
+    @RequestMapping("detail/{id}")
     public String detail(Model model, @PathVariable(name = "id") Long id) {
         model.addAttribute("project", service.get(id));
-        return "project/detail";
+        return "index/project";
     }
 
     @RequestMapping(value = "list", method = RequestMethod.GET)

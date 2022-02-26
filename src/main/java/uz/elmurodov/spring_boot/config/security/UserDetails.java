@@ -24,8 +24,6 @@ public class UserDetails implements org.springframework.security.core.userdetail
     private boolean superUser;
     private boolean blocked;
     private boolean active;
-    @Getter
-    private AuthRole role;
     private Set<GrantedAuthority> authorities;
 
 

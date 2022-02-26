@@ -1,15 +1,12 @@
 package uz.elmurodov.spring_boot.services.organization;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import uz.elmurodov.spring_boot.criteria.GenericCriteria;
-import uz.elmurodov.spring_boot.dto.auth.AuthUserDto;
 import uz.elmurodov.spring_boot.dto.organization.OrganizationCreateDto;
 import uz.elmurodov.spring_boot.dto.organization.OrganizationDto;
 import uz.elmurodov.spring_boot.dto.organization.OrganizationUpdateDto;
-import uz.elmurodov.spring_boot.entity.auth.AuthUser;
 import uz.elmurodov.spring_boot.entity.base.AuditAwareImpl;
 import uz.elmurodov.spring_boot.entity.organization.Organization;
 import uz.elmurodov.spring_boot.mapper.organization.OrganizationMapper;
@@ -46,7 +43,6 @@ public class OrganizationServiceImpl extends
         organization.setLogo(logoPath);
         organization.setOwner(new AuditAwareImpl().getCurrentAuditor().get());
         organization.setCreatedBy(new AuditAwareImpl().getCurrentAuditor().get());
-        organization.setLastModifiedBy(new AuditAwareImpl().getCurrentAuditor().get());
         repository.save(organization);
         return organization.getId();
     }
@@ -72,16 +68,16 @@ public class OrganizationServiceImpl extends
 
     @Override
     public List<OrganizationDto> getAll(Long id) {
-        return null;
+
+        return mapper.toDto(repository.getAll());
     }
 
     @Override
     public OrganizationDto get(Long id) {
         Organization organization = repository.findById(id).orElseThrow(() -> {
-            throw new RuntimeException("Not Found");
+            throw new RuntimeException("Not Found topolamdiku");
         });
-        OrganizationDto dto = mapper.toDto(organization);
-        return dto;
+        return mapper.toDto(organization);
     }
 
     @Override

@@ -2,11 +2,13 @@ package uz.elmurodov.spring_boot.entity.project;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 import uz.elmurodov.spring_boot.entity.base.Auditable;
 import uz.elmurodov.spring_boot.entity.organization.Organization;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+
 
 @Entity
 @Setter
@@ -15,11 +17,11 @@ import java.time.LocalDateTime;
 public class Project extends Auditable {
 
 
-    @Lob
     @Column(name = "name")
     private String name;
 
-    @Lob
+
+    @Type(type = "")
     @Column(name = "tz_path")
     private String tzPath;
 
@@ -29,6 +31,9 @@ public class Project extends Auditable {
 
     @Column(name = "closed")
     private Boolean closed;
+
+    @Column(columnDefinition = "TIMESTAMP default '2022-04-26 16:41:17.293' ")
+    private LocalDateTime finishDate;
 
     @Column(nullable = true)
     private Boolean deleted = false;

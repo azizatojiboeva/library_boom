@@ -36,10 +36,10 @@ public class AuthUserController extends AbstractController<AuthUserService> {
         return "user/detail";
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "contacts", method = RequestMethod.GET)
     public String listPage(Model model) {
         model.addAttribute("users", service.getAll(new GenericCriteria()));
-        return "user/list";
+        return "auth/users";
     }
 
 
@@ -61,10 +61,6 @@ public class AuthUserController extends AbstractController<AuthUserService> {
         return "user/delete";
     }
 
-//    @RequestMapping(value = "", method = RequestMethod.GET)
-//    public String listPage() {
-//        return "index/index";
-//    }
 
 
 }

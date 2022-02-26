@@ -15,7 +15,7 @@ import javax.transaction.Transactional;
 public interface TaskRepository extends JpaRepository<Task, Long>, AbstractRepository {
     @Transactional
     @Modifying
-    @Query(value = "update Task set priority=:prior where id=:id")
+    @Query(value = "update etm_b4.task  set priority = prior where id= id",nativeQuery = true)
     void changePriority(@Param("id") Long id, @Param("priority") String prior);
 
 }

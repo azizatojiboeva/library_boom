@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  lang="en" xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 
     <meta charset="UTF-8">
@@ -29,9 +30,15 @@
         </div>
 
         <div class="link">
-            <a th:href="@{/home/}"> -- Home
-            </a>
-            <a th:href="@{/organization/create}">Create New Organization</a>
+            <li class="nav-item active" sec:authorize="hasRole('ADMIN')" style="list-style-type: none">
+                <a th:href="@{/organization/create}">Create New Project</a>
+            </li>
+
+            <li class="nav-item active" sec:authorize="hasRole('SUPER_ADMIN')" style="list-style-type: none">
+                <a th:href="@{/organization/create}">Create New Organization</a>
+            </li>
+
+            <a th:href="@{/home/}"> -- Home</a>
             <a th:href="@{/auth/register}">Create New Admin</a>
             <a href="#">Contacts</a>
         </div>
@@ -74,6 +81,7 @@
                             <li><a class="dropdown-item" th:href="@{/auth/logout}" style="color: red">LOGOUT</a></li>
                             <li><a class="dropdown-item" th:href="@{/auth/profile}">My Profile</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
+
                         </ul>
                     </div>
 
@@ -92,25 +100,28 @@
         </nav>
 
         <div class="container">
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="..." alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h3 class="card-title" th:text="${org.name}" ></h3>
-                            <h5 class="card-text" th:text="${org.email}"></h5>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>email</th>
+                    <th> Add </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user,iter : ${users}">
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <a th:href="@{/organization/update/{org_id}(org_id=${org.id})}" class="btn btn-primary">update</a>
-            <a th:href="@{/organization/delete/{org_id}(org_id=${org.id})}" class="btn btn-primary">delete</a>
-            <a th:href="@{/organization/block/{org_id}(org_id=${org.id})}" class="btn btn-primary">block</a>
-            <a th:href="@{/organization/unblock/{org_id}(org_id=${org.id})}" class="btn btn-primary">unblock</a>
+                    <td th:utext="${iter.count}" style="border-radius: 7px ; background-color: darkslateblue"></td>
+                    <td th:text="${user.username}" style=" border-radius: 7px ; background-color: #ccc"></td>
+                    <td th:text="${user.email}" style="border-radius: 7px ; background-color: #ccc"></td>
+                    <td >
+                        <a href="#" class="btn btn-primary">Add User</a>
+                    </td>
+                </tr>
 
+                </tbody>
+            </table>
         </div>
     </aside>
 

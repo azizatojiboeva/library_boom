@@ -30,10 +30,10 @@ public class TaskController extends AbstractController<TaskServiceImpl> {
         this.check = check;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String taskList(@PathVariable(name = "column_id") Long id) {
-        service.getAll(id);
-        return "index/index3";
+    @RequestMapping(value = "task", method = RequestMethod.GET)
+    public String taskList() {
+//        service.getAll(id);
+        return "index/task";
     }
 
     @RequestMapping(value = "create/{project_id}/", method = RequestMethod.GET)

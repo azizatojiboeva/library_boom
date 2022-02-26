@@ -531,24 +531,53 @@
                     <div>
                         <i class="fas fa-search"></i>
                     </div>
-                   
+
                     <input type="text" placeholder="Search">
                 </div>
-    
+
                 <div class="user-information">
                     <div class="icon">
-                        <img th:src="@{/images/bell.png}" alt="">
+
+                        <button type="button" class="btn btn-primary position-relative">
+                            <img th:src="@{/images/bell.png}" alt="">
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                             123456+
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                        </button>
                         <i class="far fa-envelope"></i>
-                    </div>    
-                    
+                    </div>
+
                     <div class="user">
+
                         <img th:src="@{/images/useer.png}" alt="">
-                        <p>Azhar I.
-                            <i class="fas fa-angle-down"></i>
+                        <p>
+
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                <!--                            <i class="fas fa-angle-down"></i>-->
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" th:href="@{/auth/logout}" style="color: red">LOGOUT</a></li>
+                                <li><a class="dropdown-item" th:href="@{/auth/profile}">My Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+
+                            </ul>
+                        </div>
+
+                        <!--                        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Assalou alaykum Eliboy aka">-->
+                        <!--                            -->
+                        <!--                        </button>-->
+                        <!--                        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Assalou alaykum Eliboy aka">-->
+
+                        <!--                        </button>-->
+
                         </p>
                     </div>
-    
-                </div> 
+
+                </div>
+
             </nav>
 
             <div class="container">

@@ -73,10 +73,7 @@ public class ProjectColumnServiceImpl extends AbstractService<
         return dtos;
     }
 
-    @Override
-    public List<ProjectColumnDto> getAll(Long id) {
-        return null;
-    }
+
 
     @Override
     public ProjectColumnDto get(Long id) {
