@@ -27,6 +27,4 @@ public interface ProjectMemberMapper extends BaseMapper<
     @Override
     ProjectMember fromCreateDto(ProjectMemberCreateDto projectMemberCreateDto);
 
-    @Override
-    ProjectMember fromUpdateDto(ProjectMemberUpdateDto projectMemberUpdateDto);
 }
