@@ -7,7 +7,6 @@ import uz.elmurodov.spring_boot.config.security.UserDetails;
 import java.util.Optional;
 
 
-
 @Component
 public class AuditAwareImpl implements AuditorAware<Long> {
 

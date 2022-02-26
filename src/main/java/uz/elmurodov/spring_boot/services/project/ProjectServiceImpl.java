@@ -74,6 +74,11 @@ public class ProjectServiceImpl extends AbstractService<
     }
 
     @Override
+    public List<ProjectDto> getAll(Long id) {
+        return null;
+    }
+
+    @Override
     public ProjectDto get(Long id) {
         return mapper.toDto(repository.getProject(id));
     }

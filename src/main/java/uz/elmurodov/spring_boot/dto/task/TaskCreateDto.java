@@ -22,6 +22,5 @@ public class TaskCreateDto implements Dto {
     private Long priority;
     private LocalDateTime deadline;
     private Long projectId;
-    private Long columnId;
 
 }
