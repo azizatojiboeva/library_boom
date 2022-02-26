@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Table(name = "project_member", schema = "etm_b4")
 public class ProjectMember extends Auditable {
 
-
     @Column(name = "project_id",nullable = false)
     private Long project;
 
@@ -20,7 +19,7 @@ public class ProjectMember extends Auditable {
     private Long userId;
 
     @Column(name = "is_lead")
-    private Boolean isLead;
+    private Boolean isLead = false;
 
     @Column(nullable = true)
     private Boolean deleted = false;

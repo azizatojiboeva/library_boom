@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import uz.elmurodov.spring_boot.controller.base.AbstractController;
 import uz.elmurodov.spring_boot.dto.project.ProjectCreateDto;
 import uz.elmurodov.spring_boot.dto.project.ProjectUpdateDto;
-import uz.elmurodov.spring_boot.services.project.ProjectService;
+import uz.elmurodov.spring_boot.services.project.ProjectColumnService;
+import uz.elmurodov.spring_boot.services.project.ProjectMemberService;
 import uz.elmurodov.spring_boot.services.project.ProjectServiceImpl;
 
 import java.time.LocalDate;
@@ -19,21 +20,17 @@ import java.time.format.DateTimeFormatterBuilder;
 @Controller
 @RequestMapping("/project/*")
 public class ProjectController extends AbstractController<ProjectServiceImpl> {
+    private final ProjectMemberService projectMemberService;
+    private final ProjectColumnService projectColumnService;
+
     @Autowired
-    public ProjectController(ProjectServiceImpl service) {
+    public ProjectController(ProjectServiceImpl service,
+                             ProjectMemberService projectMemberService, ProjectColumnService projectColumnService) {
         super(service);
+        this.projectMemberService = projectMemberService;
+        this.projectColumnService = projectColumnService;
     }
 
-    @RequestMapping(value = "list")
-    public String homePage(Model model) {
-
-        return "index/index";
-    }
-
-    @RequestMapping(value = "project", method = RequestMethod.GET)
-    public String projectPage() {
-        return "index/project";
-    }
 
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public String createPage() {
@@ -54,11 +51,12 @@ public class ProjectController extends AbstractController<ProjectServiceImpl> {
         return "index/index";
     }
 
-
-    @RequestMapping("detail/{id}")
+    @RequestMapping("detail/{id}/")
     public String detail(Model model, @PathVariable(name = "id") Long id) {
         model.addAttribute("project", service.get(id));
-        return "index/project";
+//        model.addAttribute("columns", projectColumnService.getAllByProjectId(id));
+        model.addAttribute("members", projectMemberService.getAllByProjectId(id));
+        return "project/detail";
     }
 
     @RequestMapping(value = "list", method = RequestMethod.GET)

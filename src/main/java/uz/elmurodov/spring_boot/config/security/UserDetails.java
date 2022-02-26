@@ -36,7 +36,6 @@ public class UserDetails implements org.springframework.security.core.userdetail
         this.superUser = user.isSuperUser();
         this.blocked = user.isBlocked();
         this.active = user.isActive();
-        this.role=user.getRole();
         processAuthorities(user);
     }
 

@@ -3,11 +3,9 @@ package uz.elmurodov.spring_boot.dto.project;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import uz.elmurodov.spring_boot.dto.auth.AuthUserDto;
 import uz.elmurodov.spring_boot.dto.base.GenericDto;
+import uz.elmurodov.spring_boot.entity.project.ProjectMember;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -22,8 +20,14 @@ public class ProjectDto extends GenericDto {
     private String tzPath;
     private LocalDateTime finishDate;
     private List<ProjectColumnDto> columns;
+    private List<ProjectMemberDto> members;
 
     @Builder(builderMethodName = "childBuilder")
+    public ProjectDto(Long id, String name,
+                      Long organizationId,
+                      boolean closed,
+                      List<ProjectColumnDto> columns,
+                      List<ProjectMemberDto> members) {
     public ProjectDto(Long id, String name, Long organizationId, LocalDateTime finishDate,boolean closed, List<ProjectColumnDto> columns)
     {
         super(id);
@@ -32,5 +36,6 @@ public class ProjectDto extends GenericDto {
         this.finishDate=finishDate;
         this.closed = closed;
         this.columns = columns;
+        this.members = members;
     }
 }

@@ -15,8 +15,8 @@ import uz.elmurodov.spring_boot.services.base.AbstractService;
 import uz.elmurodov.spring_boot.utils.BaseUtils;
 import uz.elmurodov.spring_boot.utils.validators.auth.AuthUserValidator;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -85,8 +85,17 @@ public class AuthUserServiceImpl extends
 
     @Override
     public List<AuthUserDto> getAll(Long id) {
-        return null;
+        return mapper.toDto(repository.findAll());
     }
+
+    public List<AuthUserDto> getAllProjectMembers(List<Long> membersId) {
+        List<AuthUserDto> dtos = new ArrayList<>();
+        for (Long id : membersId) {
+            dtos.add(mapper.toDto(repository.getById(id)));
+        }
+        return dtos;
+    }
+
 
     @Override
     public AuthUserDto get(Long id) {

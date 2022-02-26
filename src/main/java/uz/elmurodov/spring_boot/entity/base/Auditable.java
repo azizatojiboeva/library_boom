@@ -51,13 +51,6 @@ public abstract class Auditable implements BaseEntity, Serializable {
     @Column(name = "is_deleted", nullable = true, columnDefinition = "boolean default false")
     private boolean deleted=false;
 
-    public boolean isDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
 
 
 }

@@ -13,7 +13,7 @@ import uz.elmurodov.spring_boot.dto.base.GenericDto;
 public class CommentDto extends GenericDto {
     private String commentBody;
     private Long taskId;
-    private String commentType;
+    private String  commentType;
 
 
     @Builder(builderMethodName = "childBuilder")
