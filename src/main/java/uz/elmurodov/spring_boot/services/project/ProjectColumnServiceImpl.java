@@ -21,8 +21,8 @@ import java.util.List;
 public class ProjectColumnServiceImpl extends AbstractService<
         ProjectColumnRepository,
         ProjectColumnMapper,
-        ProjectColumnValidator
-        > implements ProjectColumnService{
+        ProjectColumnValidator>
+        implements ProjectColumnService{
 
     @Autowired
     protected ProjectColumnServiceImpl(

@@ -22,15 +22,15 @@ public interface ProjectMapper extends BaseMapper<
         ProjectUpdateDto>, uz.elmurodov.spring_boot.mapper.base.Mapper {
 
     @Override
-    public ProjectDto toDto(Project project) ;
+    public ProjectDto toDto(Project project);
 
     @Override
-    public List<ProjectDto> toDto(List<Project> e) ;
+    public List<ProjectDto> toDto(List<Project> e);
 
     @Override
-    public Project fromCreateDto(ProjectCreateDto projectCreateDto) ;
+    public Project fromCreateDto(ProjectCreateDto projectCreateDto);
 
 
     @Override
-    public Project fromUpdateDto(ProjectUpdateDto projectUpdateDto) ;
+    public Project fromUpdateDto(ProjectUpdateDto projectUpdateDto);
 }
