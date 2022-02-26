@@ -4,6 +4,7 @@ import uz.elmurodov.spring_boot.dto.auth.AuthUserDto;
 import uz.elmurodov.spring_boot.dto.base.GenericDto;
 
 public class ProjectMemberDto extends GenericDto {
+    private Long project;
 
-    private AuthUserDto userDto;
+    private Long userId;
 }
