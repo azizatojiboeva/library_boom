@@ -58,10 +58,7 @@ public class TaskServiceImpl extends AbstractService<
         return null;
     }
 
-    @Override
-    public List<TaskDto> getAll(Long id) {
-        return null;
-    }
+
 
     @Override
     public List<TaskDto> getAll(Long id) {

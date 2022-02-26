@@ -67,12 +67,6 @@ public class OrganizationServiceImpl extends
 
 
     @Override
-    public List<OrganizationDto> getAll(Long id) {
-
-        return mapper.toDto(repository.getAll());
-    }
-
-    @Override
     public OrganizationDto get(Long id) {
         Organization organization = repository.findById(id).orElseThrow(() -> {
             throw new RuntimeException("Not Found topolamdiku");

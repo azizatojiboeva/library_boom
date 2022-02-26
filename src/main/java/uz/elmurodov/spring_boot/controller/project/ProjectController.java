@@ -11,10 +11,8 @@ import uz.elmurodov.spring_boot.services.project.ProjectColumnService;
 import uz.elmurodov.spring_boot.services.project.ProjectMemberService;
 import uz.elmurodov.spring_boot.services.project.ProjectServiceImpl;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 
 
 @Controller
@@ -54,9 +52,9 @@ public class ProjectController extends AbstractController<ProjectServiceImpl> {
     @RequestMapping("detail/{id}/")
     public String detail(Model model, @PathVariable(name = "id") Long id) {
         model.addAttribute("project", service.get(id));
-//        model.addAttribute("columns", projectColumnService.getAllByProjectId(id));
+        model.addAttribute("columns", projectColumnService.getAll(id));
         model.addAttribute("members", projectMemberService.getAllByProjectId(id));
-        return "project/detail";
+        return "index/index2";
     }
 
     @RequestMapping(value = "list", method = RequestMethod.GET)

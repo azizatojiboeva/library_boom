@@ -49,10 +49,7 @@ public class TaskMemberServiceImpl extends AbstractService<
         return null;
     }
 
-    @Override
-    public List<TaskDto> getAll(GenericCriteria criteria) {
-        return null;
-    }
+
 
     @Override
     public List<TaskDto> getAll(Long id) {

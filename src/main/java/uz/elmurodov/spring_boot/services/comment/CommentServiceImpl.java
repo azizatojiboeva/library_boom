@@ -12,6 +12,7 @@ import uz.elmurodov.spring_boot.reposiroty.task.TaskRepository;
 import uz.elmurodov.spring_boot.services.base.AbstractService;
 import uz.elmurodov.spring_boot.utils.BaseUtils;
 import uz.elmurodov.spring_boot.utils.validators.comment.CommentValidator;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,6 +41,7 @@ public class CommentServiceImpl extends AbstractService<CommentRepository, Comme
         repository.save(comment);
         return comment.getId();
     }
+
     @Override
     public Void delete(Long id) {
         repository.deleteSoft(id);
@@ -52,11 +54,6 @@ public class CommentServiceImpl extends AbstractService<CommentRepository, Comme
         return null;
     }
 
-    @Override
-    public List<CommentDto> getAll(GenericCriteria criteria) {
-
-        return null;
-    }
 
     @Override
     public List<CommentDto> getAll(Long id) {

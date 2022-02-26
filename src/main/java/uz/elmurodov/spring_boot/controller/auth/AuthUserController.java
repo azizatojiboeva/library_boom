@@ -38,7 +38,7 @@ public class AuthUserController extends AbstractController<AuthUserService> {
 
     @RequestMapping(value = "contacts", method = RequestMethod.GET)
     public String listPage(Model model) {
-        model.addAttribute("users", service.getAll(new GenericCriteria()));
+        model.addAttribute("users", service.getAll(1L));
         return "auth/users";
     }
 

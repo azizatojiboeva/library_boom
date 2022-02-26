@@ -57,12 +57,12 @@ public class ProjectColumnServiceImpl extends AbstractService<
         return null;
     }
 
-    @Override
+
     public List<ProjectColumnDto> getAll(GenericCriteria criteria) {
 //        ProjectColumn projectColumn = repository.getAll();
         return null;
     }
-
+    @Override
     public List<ProjectColumnDto> getAll(Long id) {
         List<ProjectColumn> projectColumn = repository.getAll(id);
         List<ProjectColumnDto> dtos = mapper.toDto(projectColumn);

@@ -17,6 +17,7 @@ import uz.elmurodov.spring_boot.utils.validators.auth.AuthUserValidator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -75,7 +76,7 @@ public class AuthUserServiceImpl extends
         return null;
     }
 
-    @Override
+
     public List<AuthUserDto> getAll(GenericCriteria criteria) {
         if (Objects.equals(auditAware.getCredentials().getRole().toString(), "SUPER_ADMIN")){
         return mapper.toDto(repository.findAllUser());

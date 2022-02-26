@@ -18,5 +18,4 @@ public class ProjectColumnDto extends GenericDto {
     private String name;
     private List<TaskDto> tasks;
     private Long project_id;
-    private List<TaskDto> tasks;
 }
