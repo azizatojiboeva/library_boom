@@ -5,6 +5,7 @@ import uz.elmurodov.spring_boot.criteria.GenericCriteria;
 import uz.elmurodov.spring_boot.dto.task.TaskCreateDto;
 import uz.elmurodov.spring_boot.dto.task.TaskDto;
 import uz.elmurodov.spring_boot.dto.task.TaskUpdateDto;
+import uz.elmurodov.spring_boot.entity.comment.Comment;
 import uz.elmurodov.spring_boot.mapper.task.TaskMemberMapper;
 import uz.elmurodov.spring_boot.reposiroty.task.TaskMemberRepository;
 import uz.elmurodov.spring_boot.services.base.AbstractService;

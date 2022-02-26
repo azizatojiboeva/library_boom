@@ -22,7 +22,7 @@ public class ProjectColumnServiceImpl extends AbstractService<
         ProjectColumnRepository,
         ProjectColumnMapper,
         ProjectColumnValidator
-        > implements ProjectColumnService {
+        > implements ProjectColumnService{
 
     @Autowired
     protected ProjectColumnServiceImpl(
@@ -64,6 +64,4 @@ public class ProjectColumnServiceImpl extends AbstractService<
     public Long totalCount(GenericCriteria criteria) {
         return null;
     }
-
-
 }
