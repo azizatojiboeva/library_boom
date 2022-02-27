@@ -30,6 +30,8 @@
         </div>
 
         <div class="link">
+            <a th:href="@{/home/}"> -- Home</a>
+
             <li class="nav-item active" sec:authorize="hasRole('ADMIN')" style="list-style-type: none">
             <a th:href="@{/organization/create}">Create New Project</a>
             </li>
@@ -38,7 +40,6 @@
             <a th:href="@{/organization/create}">Create New Organization</a>
             </li>
 
-            <a th:href="@{/home/}"> -- Home</a>
             <a th:href="@{/auth/register}">Create New Admin</a>
             <a th:href="@{/auth/contacts}">Contacts</a>
         </div>

@@ -6,8 +6,14 @@ import lombok.Setter;
 import uz.elmurodov.spring_boot.dto.base.GenericDto;
 @Setter
 @Getter
-@Builder(builderMethodName = "childBuilder")
 public class AuthUserDto extends GenericDto {
     private String username;
     private String email;
+
+    @Builder(builderMethodName = "childBuilder")
+    public AuthUserDto(Long id, String username, String email) {
+        super(id);
+        this.username = username;
+        this.email = email;
+    }
 }

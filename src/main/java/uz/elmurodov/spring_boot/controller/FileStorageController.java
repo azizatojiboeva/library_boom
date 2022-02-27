@@ -8,9 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import uz.elmurodov.spring_boot.services.file.FileStorageService;
 
 @Controller
+@RequestMapping("/uploads/*")
 public class FileStorageController {
 
     private final FileStorageService fileStorageService;
@@ -21,7 +23,7 @@ public class FileStorageController {
         this.fileStorageService = fileStorageService;
     }
 
-    @GetMapping("/uploads/{filename:.+}")
+    @GetMapping("{filename:.+}")
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 
         Resource file = fileStorageService.loadAsResource(filename);

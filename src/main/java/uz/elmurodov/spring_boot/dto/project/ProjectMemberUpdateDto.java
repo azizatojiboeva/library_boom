@@ -7,4 +7,7 @@ import javax.persistence.Column;
 public class ProjectMemberUpdateDto extends GenericDto {
 
 
+    public ProjectMemberUpdateDto(Long id) {
+        super(id);
+    }
 }

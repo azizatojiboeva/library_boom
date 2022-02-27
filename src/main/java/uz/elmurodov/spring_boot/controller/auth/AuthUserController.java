@@ -41,6 +41,11 @@ public class AuthUserController extends AbstractController<AuthUserService> {
         model.addAttribute("users", service.getAll(1L));
         return "auth/users";
     }
+    @RequestMapping(value = "users/{organization_id}", method = RequestMethod.GET)
+    public String listPage(@PathVariable(name = "organization_id")Long id, Model model) {
+        model.addAttribute("users", service.getAll(id));
+        return "auth/users";
+    }
 
 
     @RequestMapping(value = "update/{id}/", method = RequestMethod.GET)

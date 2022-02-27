@@ -27,8 +27,11 @@ public interface AuthUserRepository extends JpaRepository<AuthUser, Long>, Abstr
     void update(@Param("dto") AuthUserUpdateDto dto);
 
 
-    @Query(value = "select * from etm_b4.auth_user where not deleted", nativeQuery = true)
+    @Query(value = "select * from etm_b4.auth_user where not is_deleted", nativeQuery = true)
     List<AuthUser> getAll();
     @Query("select A from AuthUser A where  A.deleted = false and  A.role.id = 1")
     List<AuthUser> findAllUser();
+
+    /*@Query(value = "select * from etm_b4.auth_user where  organization_id = :id and not is_deleted ",nativeQuery = true)
+    List<AuthUser> getAllByOrgId(@Param("id") Long id);*/
 }

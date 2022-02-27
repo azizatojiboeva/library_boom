@@ -24,10 +24,12 @@ public interface ProjectMapper extends BaseMapper<
 
     @Override
     @Mapping(target = "finishDate", ignore = true)
+  //  @Mapping(target = "organization", ignore = true)
     public ProjectDto toDto(Project project) ;
 
     @Override
     @Mapping(target = "finishDate", ignore = true)
+    //@Mapping(target = "organization", ignore = true)
     public List<ProjectDto> toDto(List<Project> e) ;
 
     @Override

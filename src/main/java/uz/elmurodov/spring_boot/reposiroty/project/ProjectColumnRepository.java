@@ -12,6 +12,6 @@ import java.util.List;
  * @Author Aziza Tojiboyeva
  */
 public interface ProjectColumnRepository extends JpaRepository<ProjectColumn, Long>, AbstractRepository {
-    @Query(value = "select * from etm_b4.project_column pc where pc.project_id = :id and not deleted ",nativeQuery = true)
+    @Query(value = "select * from etm_b4.project_column pc where pc.project_id = :id and not pc.is_deleted ",nativeQuery = true)
     List<ProjectColumn> getAll(@Param("id") Long id );
 }

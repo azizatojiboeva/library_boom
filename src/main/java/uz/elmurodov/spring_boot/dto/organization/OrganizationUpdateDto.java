@@ -9,7 +9,6 @@ import uz.elmurodov.spring_boot.dto.base.GenericDto;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class OrganizationUpdateDto extends GenericDto {
     private String name;
     private String code;

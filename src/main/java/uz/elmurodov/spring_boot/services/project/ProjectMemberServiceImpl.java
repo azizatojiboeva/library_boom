@@ -38,7 +38,6 @@ public class ProjectMemberServiceImpl extends AbstractService<
 
     @Override
     public Long create(ProjectMemberCreateDto createDto) {
-//        if (!auditAware.getCredentials().getOrganizationId().getId().equals(createDt)) throw new RuntimeException("403");
         if (!auditAware.getCredentials().getRole().getCode().equals("ADMIN")) throw new RuntimeException("403");
         ProjectMember projectMember = mapper.fromCreateDto(createDto);
         ProjectMember save = repository.save(projectMember);

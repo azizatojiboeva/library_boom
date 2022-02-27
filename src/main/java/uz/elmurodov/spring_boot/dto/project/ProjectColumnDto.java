@@ -13,9 +13,17 @@ import java.util.List;
  */
 @Setter
 @Getter
-@Builder(builderMethodName = "childBuilder")
+
 public class ProjectColumnDto extends GenericDto {
     private String name;
     private List<TaskDto> tasks;
     private Long project_id;
+
+    @Builder(builderMethodName = "childBuilder")
+    public ProjectColumnDto(Long id, String name, List<TaskDto> tasks, Long project_id) {
+        super(id);
+        this.name = name;
+        this.tasks = tasks;
+        this.project_id = project_id;
+    }
 }

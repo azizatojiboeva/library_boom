@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import uz.elmurodov.spring_boot.controller.base.AbstractController;
 import uz.elmurodov.spring_boot.dto.project.ProjectCreateDto;
 import uz.elmurodov.spring_boot.dto.project.ProjectUpdateDto;
+import uz.elmurodov.spring_boot.services.auth.AuthUserServiceImpl;
 import uz.elmurodov.spring_boot.services.project.ProjectColumnService;
 import uz.elmurodov.spring_boot.services.project.ProjectMemberService;
 import uz.elmurodov.spring_boot.services.project.ProjectServiceImpl;
@@ -20,13 +21,15 @@ import java.time.format.DateTimeFormatter;
 public class ProjectController extends AbstractController<ProjectServiceImpl> {
     private final ProjectMemberService projectMemberService;
     private final ProjectColumnService projectColumnService;
+    private final AuthUserServiceImpl userService;
 
     @Autowired
     public ProjectController(ProjectServiceImpl service,
-                             ProjectMemberService projectMemberService, ProjectColumnService projectColumnService) {
+                             ProjectMemberService projectMemberService, ProjectColumnService projectColumnService, AuthUserServiceImpl userService) {
         super(service);
         this.projectMemberService = projectMemberService;
         this.projectColumnService = projectColumnService;
+        this.userService = userService;
     }
 
 
@@ -49,12 +52,13 @@ public class ProjectController extends AbstractController<ProjectServiceImpl> {
         return "index/index";
     }
 
-    @RequestMapping("detail/{id}/")
+    @RequestMapping("detail/{id}")
     public String detail(Model model, @PathVariable(name = "id") Long id) {
         model.addAttribute("project", service.get(id));
         model.addAttribute("columns", projectColumnService.getAll(id));
         model.addAttribute("members", projectMemberService.getAllByProjectId(id));
-        return "index/index2";
+        model.addAttribute("users",userService.getAll(service.get(id).getOrganizationId()));
+        return "index/project";
     }
 
     @RequestMapping(value = "list", method = RequestMethod.GET)

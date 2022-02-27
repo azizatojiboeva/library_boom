@@ -25,10 +25,10 @@ public interface ProjectRepository extends JpaRepository<Project, Long>, Abstrac
     @Query(value = "update project set name = :#{#dto.name} where id = :#{#dto.id}", nativeQuery = true)
     void update(@Param("dto") ProjectUpdateDto dto);
 
-    @Query(value = "select * from project where organization_id=:id and not deleted", nativeQuery = true)
-    List<Project> getAll();
+    @Query(value = "select * from project where organization_id=:id and not is_deleted", nativeQuery = true)
+    List<Project> getAll(@Param("id") Long id);
 
-    @Query(value = "select * from project where id = :id and not deleted", nativeQuery = true)
+    @Query(value = "select * from project where id = :id and not is_deleted", nativeQuery = true)
     Project getProject(@Param("id") Long id);
 
 }

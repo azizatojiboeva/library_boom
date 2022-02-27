@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class AuthUserServiceImpl extends
@@ -85,9 +86,13 @@ public class AuthUserServiceImpl extends
     }
 
     @Override
-    public List<AuthUserDto> getAll(Long id) {
-        return mapper.toDto(repository.findAll());
+    public List<AuthUserDto> getAll(Long organizationId) {
+        List<AuthUser> users = repository.findAll();
+        List<AuthUser> list= users.stream().filter(authUser -> authUser.getOrganizationId().getId() == organizationId && !authUser.isDeleted()).collect(Collectors.toList());
+        return mapper.toDto(list);
     }
+
+
 
     public List<AuthUserDto> getAllProjectMembers(List<Long> membersId) {
         List<AuthUserDto> dtos = new ArrayList<>();

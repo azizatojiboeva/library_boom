@@ -12,9 +12,9 @@ import java.util.Optional;
 
 public interface ProjectMemberRepository extends JpaRepository<ProjectMember, Long>, AbstractRepository {
 
-    @Query(value = "select * from  project_member pm inner join auth_user  au ", nativeQuery = true)
-        /*Optional<List<ProjectMemberDto>>*/ List<ProjectMember> getAllByProjectId(@Param("id") Long id);
+    @Query(value = "select * from  etm_b4.project_member pm where pm.project_id = :id", nativeQuery = true)
+    List<ProjectMember> getAllByProjectId(@Param("id") Long id);
 
-    @Query(value = "select pm.user_id from project_member pm where pm.id = :id /*and not pm.deleted*/", nativeQuery = true)
-    List<Long> getAllProjectMembersById(Long projectId);
+    @Query(value = "select pm.user_id from etm_b4.project_member pm where pm.id = :projectId ", nativeQuery = true)
+    List<Long> getAllProjectMembersById(@Param("projectId") Long projectId);
 }

@@ -58,10 +58,16 @@ public class OrganizationController extends AbstractController<OrganizationServi
         return "redirect:/home/";
     }
 
+
     @RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
     public String deletePage(Model model, @PathVariable(name = "id") Long id) {
         model.addAttribute("organization", service.get(id));
         return "organization/delete";
+    }
+    @RequestMapping(value = "delete/{id}" , method = RequestMethod.POST)
+    public String delete(@PathVariable(name = "id") Long id){
+        service.delete(id);
+        return "redirect:/home/";
     }
 
 

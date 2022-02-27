@@ -55,7 +55,6 @@ public class ProjectServiceImpl extends AbstractService<
     @Override
     public Long create(ProjectCreateDto createDto) {
         if (!auditAware.getCredentials().getRole().getCode().equals("ADMIN")) throw new RuntimeException("403");
-
         MultipartFile file = createDto.getTz();
         String tzPath = fileStorageService.store(file);
         Project project = mapper.fromCreateDto(createDto);
@@ -64,7 +63,6 @@ public class ProjectServiceImpl extends AbstractService<
         repository.save(project);
         return project.getId();
     }
-
 
     @Override
     public Void delete(Long id) {
@@ -79,7 +77,7 @@ public class ProjectServiceImpl extends AbstractService<
         repository.update(updateDto);
         return null;
     }
-
+//
 //    @Override
 //    public List<ProjectDto> getAll(Long organizationId) {
 //        List<ProjectDto> dtos = mapper.toDto(repository.getAll());
@@ -97,9 +95,6 @@ public class ProjectServiceImpl extends AbstractService<
 //        });
 //        return dtos;
 
-    public List<ProjectDto> getAll(GenericCriteria criteria) {
-        return null;
-    }
 
     @Override
     public List<ProjectDto> getAll(Long id) {
@@ -119,7 +114,10 @@ public class ProjectServiceImpl extends AbstractService<
 
     @Override
     public ProjectDto get(Long id) {
-        return mapper.toDto(repository.getProject(id));
+        Project project = repository.getProject(id);
+        ProjectDto projectDto = mapper.toDto(project);
+         projectDto.setOrganizationId(project.getOrganization().getId());
+         return projectDto;
     }
 
     @Override

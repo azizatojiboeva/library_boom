@@ -95,28 +95,41 @@
         </nav>
 
         <div class="container">
-            <h3>Project name</h3>
+            <h3 th:text="${project.name}"></h3>
 
             <div class="contents">
                 <div class="content">
                     <div class="box">
-                        <p><b>Date added:</b> <span> 12/04/2021</span></p>
-                        <p><b>Deadline:</b><span>12/04/2021 </span></p>
+                        <p><b>Closed</b> <span th:text="${project.closed}"></span></p>
+                        <p><b>Deadline:</b><span th:text="${project.finishDate}"> </span></p>
                     </div>
                     <div class="content-box">
                         <p>
-                        <div class="dropdown" style="margin-left: 20px">
+                        <div class="dropdown" style=" display: inline-block">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="newId"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                               -----------   Users   ----------
+                                Members
                             </button>
-                            <ul class="dropdown-menu" aria-labelledby="newId">
-                                <form>
-                                    <th><p>Assalomu asdfas</p></th>
-                                    <th><p>Assalomu asdfas</p></th>
-                                    <th><p>Assalomu asdfas</p></th>
-                                    <th><p>Assalomu asdfas</p></th>
+                        <ul class="dropdown-menu" aria-labelledby="newId">
+
+                                <form th:each="member, iter: ${members}">
+                                    <th><p th:text="${member.username}"><</p>/th>
                                 </form>
+                            </ul>
+                        </div>
+                        <div class="dropdown" style=" display: inline-block">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="nodir"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                               Invite Users
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="nodir">
+                                <tr th:each="user, iter: ${users}" >
+                                    <td th:text="${user.username}"></td>
+
+                                    <td>
+                                        <a th:href="@{/projectMember/addMember/{user_id}/{project_id}(user_id=${user.id})(project_id=${project.id})}" style="text-decoration: none">+</a>
+                                    </td>
+                                </tr>
                             </ul>
                         </div>
                         </p>

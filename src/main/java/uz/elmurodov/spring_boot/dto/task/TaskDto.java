@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
  */
 @Setter
 @Getter
-@Builder(builderMethodName = "childBuilder")
 public class TaskDto extends GenericDto {
 
     private String name;
@@ -22,5 +21,15 @@ public class TaskDto extends GenericDto {
     private LocalDateTime deadline;
     private Long projectId;
     private Long columnId;
-
+    @Builder(builderMethodName = "childBuilder")
+    public TaskDto(Long id, String name, String description, String level, String priority, LocalDateTime deadline, Long projectId, Long columnId) {
+        super(id);
+        this.name = name;
+        this.description = description;
+        this.level = level;
+        this.priority = priority;
+        this.deadline = deadline;
+        this.projectId = projectId;
+        this.columnId = columnId;
+    }
 }

@@ -12,11 +12,17 @@ import java.time.LocalDateTime;
  */
 @Setter
 @Getter
-@Builder(builderMethodName = "childBuilder")
+
 public class TaskUpdateDto extends GenericDto {
 
     private String name;
     private String description;
     private LocalDateTime deadline;
-
+    @Builder(builderMethodName = "childBuilder")
+    public TaskUpdateDto(Long id, String name, String description, LocalDateTime deadline) {
+        super(id);
+        this.name = name;
+        this.description = description;
+        this.deadline = deadline;
+    }
 }

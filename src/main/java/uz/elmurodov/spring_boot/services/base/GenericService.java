@@ -19,6 +19,8 @@ public interface GenericService<
 
     List<D> getAll(K id);
 
+   // List<D> getAll(C criteria);
+
     D get(K id);
 
     Long totalCount(C criteria);

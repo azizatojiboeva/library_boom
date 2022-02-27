@@ -10,6 +10,10 @@ import uz.elmurodov.spring_boot.dto.base.GenericDto;
  */
 @Setter
 @Getter
-@Builder(builderMethodName = "childBuilder")
+
 public class TaskMemberDto extends GenericDto {
+    @Builder(builderMethodName = "childBuilder")
+    public TaskMemberDto(Long id) {
+        super(id);
+    }
 }

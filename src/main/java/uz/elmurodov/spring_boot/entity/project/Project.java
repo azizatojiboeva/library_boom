@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Type;
 import uz.elmurodov.spring_boot.entity.base.Auditable;
 import uz.elmurodov.spring_boot.entity.organization.Organization;
+import uz.elmurodov.spring_boot.entity.upload.Uploads;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
