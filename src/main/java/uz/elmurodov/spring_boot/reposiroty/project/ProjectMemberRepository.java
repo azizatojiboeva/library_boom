@@ -15,6 +15,6 @@ public interface ProjectMemberRepository extends JpaRepository<ProjectMember, Lo
     @Query(value = "select * from  etm_b4.project_member pm where pm.project_id = :id", nativeQuery = true)
     List<ProjectMember> getAllByProjectId(@Param("id") Long id);
 
-    @Query(value = "select pm.user_id from etm_b4.project_member pm where pm.id = :projectId ", nativeQuery = true)
+    @Query(value = "select pm.user_id from etm_b4.project_member pm where pm.project_id =:projectId ", nativeQuery = true)
     List<Long> getAllProjectMembersById(@Param("projectId") Long projectId);
 }

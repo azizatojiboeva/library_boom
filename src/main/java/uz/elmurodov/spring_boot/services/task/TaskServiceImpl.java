@@ -59,18 +59,18 @@ public class TaskServiceImpl extends AbstractService<
     }
 
 
-
     @Override
     public List<TaskDto> getAll(Long id) {
+
         return mapper.toDto(repository.findAll().stream()
-                .filter(task -> task.getColumnId()
-                        .equals(id))
+                .filter(task -> task.getProject().getId().equals(id) && !task.isDeleted())
                 .collect(Collectors
                         .toList()));
     }
 
     @Override
-    public TaskDto get(Long id) {
+    public TaskDto get(Long id)
+    {
         return null;
     }
 
@@ -82,6 +82,10 @@ public class TaskServiceImpl extends AbstractService<
 
 
     public void changePriority(Long id, String priority) {
-         repository.changePriority(id, priority);
+        repository.changePriority( priority,id);
+    }
+
+    public void changeLevel(Long id, String level) {
+        repository.changeLevel(id, level);
     }
 }

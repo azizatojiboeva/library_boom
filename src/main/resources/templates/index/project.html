@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+
+    .todoContent-box {
+        overflow-y: scroll;
+    }
+
+    .todoContent-box::-webkit-scrollbar {
+        display: none;
+    }
+
+    body {
+        text-decoration: none;
+    }
+</style>
 <head>
-    <style>
-        body {
-            text-decoration: none;
-        }
-    </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,13 +89,6 @@
                         </ul>
                     </div>
 
-                    <!--                        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Assalou alaykum Eliboy aka">-->
-                    <!--                            -->
-                    <!--                        </button>-->
-                    <!--                        <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="Assalou alaykum Eliboy aka">-->
-
-                    <!--                        </button>-->
-
                     </p>
                 </div>
 
@@ -110,25 +112,28 @@
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                 Members
                             </button>
-                        <ul class="dropdown-menu" aria-labelledby="newId">
-
-                                <form th:each="member, iter: ${members}">
-                                    <th><p th:text="${member.username}"><</p>/th>
-                                </form>
+                            <ul class="dropdown-menu" aria-labelledby="newId">
+                                <tr th:each="member, iter: ${members}">
+                                    <li>
+                                        <td th:text="${member.username}"></td>
+                                    </li>
+                                </tr>
                             </ul>
                         </div>
                         <div class="dropdown" style=" display: inline-block">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="nodir"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                               Invite Users
+                                Invite Users
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="nodir">
-                                <tr th:each="user, iter: ${users}" >
-                                    <td th:text="${user.username}"></td>
-
-                                    <td>
-                                        <a th:href="@{/projectMember/addMember/{user_id}/{project_id}(user_id=${user.id})(project_id=${project.id})}" style="text-decoration: none">+</a>
-                                    </td>
+                                <tr th:each="user, iter: ${users}">
+                                    <li>
+                                        <td>
+                                            <a th:href="@{/projectMember/addMember/{user_id}/{project_id}(user_id=${user.id},project_id=${project.id})}"
+                                               class="btn btn-primary" style="margin-top: 5px">➕</a>
+                                        </td>
+                                        <td th:text="${user.username}"></td>
+                                    </li>
                                 </tr>
                             </ul>
                         </div>
@@ -140,7 +145,7 @@
                     </div>
                 </div>
 
-                <div class="todoContainer">
+                <div class="todoContainer ">
                     <div class="todoContent-box">
                         <div class="todo-img">
                             <h1>To Do</h1>
@@ -150,16 +155,24 @@
                                     <img th:src="@{/images/plus-circle.png}" alt=""/>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="husan">
-                                    <form>
-                                        <input type="text" placeholder="Add todo name"/>
-                                        <input type="text" placeholder="Description "/>
-                                        <select class="form-select" aria-label="Default select example">
+                                    <form th:action="@{/task/create/{project_id}(project_id=${project.id})}"
+                                          method="post">
+                                        <input type="text" placeholder="Add todo name" name="name"/>
+                                        <input type="text" placeholder="Description " name="description"/>
+                                        <select name="level" class="form-select" aria-label="Default select example">
                                             <option selected>Level</option>
-                                            <option value="">Hard</option>
-                                            <option value="">Middle</option>
-                                            <option value="3">Easy</option>
+                                            <option value="HARD">Hard</option>
+                                            <option value="MIDDLE">Middle</option>
+                                            <option value="EASY">Easy</option>
                                         </select>
-                                        <input type="datetime-local" />
+
+                                        <select name="priority" class="form-select" aria-label="Default select example">
+                                            <option selected>Priority</option>
+                                            <option value="EASY">Easy</option>
+                                            <option value="MEDIUM">Medium</option>
+                                            <option value="HIGH">High</option>
+                                        </select>
+                                        <input type="datetime-local" name="finishDate"/>
                                         <button type="submit" class="btn btn-primary">Add</button>
                                     </form>
                                 </ul>
@@ -167,68 +180,38 @@
 
 
                         </div>
+                        <div th:each="column, iter: ${columns}">
+                            <div th:each="task, iter: ${column.tasks}">
+                                <a th:href="@{/task/task}" style="text-decoration: none">
 
-                        <a th:href="@{/task/task}" style="text-decoration: none">
-                            <div class="todo-box">
-                                <h4>CRM system design
-                                    <button class="medium">Medium</button>
-                                </h4>
-                                <p><span>Participant:  </span>Azhar</p>
-                                <p><span>Participant:  </span>Azhar</p>
+                                    <div class="todo-box">
+                                        <h4 th:text="${task.name}" style="display: inline-block ;">
+                                        </h4>
+                                        <button class="low" th:text="${task.level}"
+                                                style=" margin-left: 100px ; border-radius: 5px"></button>
+                                        <p> description : <span th:text="${task.description}"></span></p>
+                                    </div>
+
+                                </a>
                             </div>
 
-                        </a>
-                        <div class="todo-box">
-                            <h4>CRM system design
-                                <button class="low">Low</button>
-                            </h4>
-                            <p><span>Participant:  </span>Azhar</p>
-                            <p><span>Participant:  </span>Azhar</p>
                         </div>
 
-                        <div class="todo-box">
-                            <h4>CRM system design
-                                <button class="high">High</button>
-                            </h4>
-                            <p><span>Participant:  </span>Azhar</p>
-                            <p><span>Participant:  </span>Azhar</p>
-                        </div>
                     </div>
                     <div class="todoContent-box">
                         <div class="todo-img">
-                            <p>To do</p>
-                        </div>
-                        <div class="todo-box">
-                            <h4>CRM system design
-                                <button class="low">Low</button>
-                            </h4>
-                            <p><span>Participant:  </span>Azhar</p>
-                            <p><span>Participant:  </span>Azhar</p>
+                            <h2>To do</h2>
                         </div>
 
-                        <div class="todo-box">
-                            <h4>CRM system design
-                                <button class="low">Low</button>
-                            </h4>
-                            <p><span>Participant:  </span>Azhar</p>
-                            <p><span>Participant:  </span>Azhar</p>
+                    </div>
+                    <div class="todoContent-box">
+                        <div class="todo-img">
+                            <h2>To do</h2>
                         </div>
                     </div>
                     <div class="todoContent-box">
                         <div class="todo-img">
-                            <p>To do</p>
-                        </div>
-                    </div>
-                    <div class="todoContent-box">
-                        <div class="todo-img">
-                            <p>To do</p>
-                        </div>
-                        <div class="todo-box">
-                            <h4>CRM system design
-                                <button class="low">Low</button>
-                            </h4>
-                            <p><span>Participant:  </span>Azhar</p>
-                            <p><span>Participant:  </span>Azhar</p>
+                            <h2>To do</h2>
                         </div>
                     </div>
                 </div>

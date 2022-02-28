@@ -2,6 +2,7 @@ package uz.elmurodov.spring_boot.entity.auth;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import uz.elmurodov.spring_boot.entity.base.Auditable;
 import uz.elmurodov.spring_boot.entity.organization.Organization;
 
@@ -14,6 +15,7 @@ import java.util.UUID;
 @Entity
 @Setter
 @Getter
+@ToString
 public class AuthUser extends Auditable {
 
     @Column(unique = true, nullable = false)

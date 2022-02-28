@@ -20,13 +20,9 @@ public class Uploads {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Double size;
-
-    private String orgName;
-
+    private String originalName;
     private String generatedName;
-
-    private String path;
-
     private String contentType;
+    private long size;
+    private String path;
 }

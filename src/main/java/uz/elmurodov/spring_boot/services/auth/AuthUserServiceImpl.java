@@ -97,7 +97,10 @@ public class AuthUserServiceImpl extends
     public List<AuthUserDto> getAllProjectMembers(List<Long> membersId) {
         List<AuthUserDto> dtos = new ArrayList<>();
         for (Long id : membersId) {
-            dtos.add(mapper.toDto(repository.getById(id)));
+            AuthUser user= repository.getAuthUser(id);
+            System.out.println(user);
+             AuthUserDto userDto = mapper.toDto(user);
+            dtos.add(userDto);
         }
         return dtos;
     }

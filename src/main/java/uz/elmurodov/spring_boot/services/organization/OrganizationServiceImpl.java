@@ -62,7 +62,7 @@ public class OrganizationServiceImpl extends
 
     @Override
     public List<OrganizationDto> getAll(Long id) {
-        return mapper.toDto(repository.findOrganizationByDeletedFalse());
+        return mapper.toDto(repository.getAllOrg());
     }
 
 

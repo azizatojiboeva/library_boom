@@ -11,6 +11,8 @@ import uz.elmurodov.spring_boot.controller.base.AbstractController;
 import uz.elmurodov.spring_boot.dto.project.ProjectMemberCreateDto;
 import uz.elmurodov.spring_boot.services.project.ProjectMemberServiceImpl;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("/projectMember/*")
 public class ProjectMemberController extends AbstractController<ProjectMemberServiceImpl> {
@@ -21,11 +23,12 @@ public class ProjectMemberController extends AbstractController<ProjectMemberSer
     }
 
     @RequestMapping(value = "addMember/{user_id}/{project_id}", method = RequestMethod.GET)
-    @ResponseBody
-    public String addMember(@PathVariable(name = "user_id") String id , @PathVariable(name = "project_id") Long project_id){
-        ProjectMemberCreateDto dto=new ProjectMemberCreateDto(project_id,Long.valueOf(id));
-       service.create(dto);
-       return "";
+    public String addMember(@PathVariable(name = "user_id") Long id,
+                            @PathVariable(name = "project_id") Long project_id,
+                            HttpServletRequest request) {
+        ProjectMemberCreateDto dto = new ProjectMemberCreateDto(project_id, id);
+        service.create(dto);
+        return "redirect:" + request.getHeader("Referer");
     }
 
 

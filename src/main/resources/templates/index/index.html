@@ -107,23 +107,22 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>email</th>
-                    <th>code</th>
+                    <th>icon</th>
                     <th> Show </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="org,iter : ${organizations}">
 
-                    <td th:utext="${iter.count}" style="border-radius: 7px ; background-color: darkslateblue"></td>
-                    <td th:text="${org.name}" style=" border-radius: 7px ; background-color: #ccc"></td>
-                    <td th:text="${org.email}" style="border-radius: 7px ; background-color: #ccc"></td>
-                    <td th:text="${org.code}" style=" border-radius: 7px ; background-color: #ccc ; margin-top :20px" ></td>
+                    <td th:utext="${iter.count}" style="border-radius: 7px ; background-color: darkslateblue ; height: 30px"></td>
+                    <td th:text="${org.name}" style=" border-radius: 7px ; background-color: #ccc ; height: 30px"></td>
+                    <td th:text="${org.email}" style="border-radius: 7px ; background-color: #ccc ;height: 30px"></td>
+                    <td style="border-radius: 7px ; background-color: #ccc ;height: 30px"><ion-icon name="cellular-outline"></ion-icon> </td>
                     <td>
 <!--                        <a th:href="@{/project/project/{todo_id}(todo_id=${todo.id})}">✅</a>-->
                         <a th:href="@{/organization/detail/{org_id}(org_id=${org.id})}" style="text-decoration: none">➕</a>
                     </td>
                 </tr>
-
                 </tbody>
             </table>
 

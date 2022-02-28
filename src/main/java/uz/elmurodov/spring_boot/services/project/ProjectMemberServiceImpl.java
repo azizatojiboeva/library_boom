@@ -61,9 +61,9 @@ public class ProjectMemberServiceImpl extends AbstractService<
 
 
     public List<AuthUserDto> getAllByProjectId(Long projectId) {
-        List<Long> membersId = repository. getAllProjectMembersById(projectId);
-        List<AuthUserDto> dtos = authUserService.getAllProjectMembers(membersId);
-        return dtos;
+        List<Long> membersId = repository.getAllProjectMembersById(projectId);
+
+        return authUserService.getAllProjectMembers(membersId);
     }
 
 

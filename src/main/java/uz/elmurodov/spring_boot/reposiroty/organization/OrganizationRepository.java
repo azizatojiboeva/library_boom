@@ -17,10 +17,12 @@ public interface OrganizationRepository extends JpaRepository<Organization, Long
 //    @Query("select o from Organization o where not o.deleted order by o.id asc ")
 //    List<Organization> getAllOrg();
 
-    List<Organization> findOrganizationByDeletedFalse();
+
+    @Query(value = "select * from  organization where not deleted ", nativeQuery = true)
+    List<Organization> getAllOrg();
 
     @Modifying
     @Transactional
-    @Query(value = "update organization  set delete =true, email = email+code where id=:id", nativeQuery = true)
+    @Query(value = "update organization  set deleted = true, email = email||code where id = :id", nativeQuery = true)
     void deleteSoft(@Param("id") Long id);
 }

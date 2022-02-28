@@ -2,11 +2,13 @@ package uz.elmurodov.spring_boot.controller.comment;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import uz.elmurodov.spring_boot.controller.base.AbstractController;
 import uz.elmurodov.spring_boot.dto.comment.CommentCreateDto;
 import uz.elmurodov.spring_boot.dto.comment.CommentUpdateDto;
-import uz.elmurodov.spring_boot.dto.project.ProjectUpdateDto;
 import uz.elmurodov.spring_boot.services.comment.CommentServiceImpl;
 import uz.elmurodov.spring_boot.utils.checks.BaseCheck;
 

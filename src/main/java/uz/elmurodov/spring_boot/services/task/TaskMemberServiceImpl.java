@@ -2,15 +2,15 @@ package uz.elmurodov.spring_boot.services.task;
 
 import org.springframework.stereotype.Service;
 import uz.elmurodov.spring_boot.criteria.GenericCriteria;
-import uz.elmurodov.spring_boot.dto.task.TaskCreateDto;
-import uz.elmurodov.spring_boot.dto.task.TaskDto;
-import uz.elmurodov.spring_boot.dto.task.TaskUpdateDto;
-import uz.elmurodov.spring_boot.entity.comment.Comment;
+import uz.elmurodov.spring_boot.dto.task.TaskMemberCreateDto;
+import uz.elmurodov.spring_boot.dto.task.TaskMemberDto;
+import uz.elmurodov.spring_boot.dto.task.TaskMemberUpdateDto;
+import uz.elmurodov.spring_boot.entity.task.TaskMember;
 import uz.elmurodov.spring_boot.mapper.task.TaskMemberMapper;
 import uz.elmurodov.spring_boot.reposiroty.task.TaskMemberRepository;
+import uz.elmurodov.spring_boot.services.auth.AuthUserServiceImpl;
 import uz.elmurodov.spring_boot.services.base.AbstractService;
 import uz.elmurodov.spring_boot.utils.BaseUtils;
-import uz.elmurodov.spring_boot.utils.validators.Validator;
 import uz.elmurodov.spring_boot.utils.validators.task.TaskMemberValidator;
 
 import java.util.List;
@@ -24,18 +24,20 @@ public class TaskMemberServiceImpl extends AbstractService<
         TaskMemberMapper,
         TaskMemberValidator
         > implements TaskMemberService{
+    private final AuthUserServiceImpl authUserService;
 
     protected TaskMemberServiceImpl(
             TaskMemberRepository repository,
             TaskMemberMapper mapper,
             TaskMemberValidator validator,
-            BaseUtils baseUtils) {
+            BaseUtils baseUtils, AuthUserServiceImpl authUserService) {
         super(repository, mapper, validator, baseUtils);
+        this.authUserService = authUserService;
     }
 
 
     @Override
-    public Long create(TaskCreateDto createDto) {
+    public Long create(TaskMemberCreateDto createDto) {
         return null;
     }
 
@@ -45,19 +47,20 @@ public class TaskMemberServiceImpl extends AbstractService<
     }
 
     @Override
-    public Void update(TaskUpdateDto updateDto) {
+    public Void update(TaskMemberUpdateDto updateDto) {
         return null;
     }
 
 
 
     @Override
-    public List<TaskDto> getAll(Long id) {
-        return null;
+    public List<TaskMemberDto> getAll(Long id) {
+        List<TaskMember> taskMembers = repository.getAllByTaskId(id);
+        return mapper.toDto(taskMembers);
     }
 
     @Override
-    public TaskDto get(Long id) {
+    public TaskMemberDto get(Long id) {
         return null;
     }
 

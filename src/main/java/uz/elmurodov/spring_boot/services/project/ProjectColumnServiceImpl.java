@@ -67,7 +67,7 @@ public class ProjectColumnServiceImpl extends AbstractService<
         List<ProjectColumn> projectColumn = repository.getAll(id);
         List<ProjectColumnDto> dtos = mapper.toDto(projectColumn);
         for (ProjectColumnDto dto : dtos) {
-            List<TaskDto> tasks = taskService.getAll(dto.getId());
+            List<TaskDto> tasks = taskService.getAll(id);
             dto.setTasks(tasks);
         }
         return dtos;

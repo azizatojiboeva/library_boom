@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import uz.elmurodov.spring_boot.dto.auth.AuthUserUpdateDto;
 import uz.elmurodov.spring_boot.entity.auth.AuthUser;
+import uz.elmurodov.spring_boot.entity.project.Project;
 import uz.elmurodov.spring_boot.reposiroty.base.AbstractRepository;
 
 
@@ -31,6 +32,9 @@ public interface AuthUserRepository extends JpaRepository<AuthUser, Long>, Abstr
     List<AuthUser> getAll();
     @Query("select A from AuthUser A where  A.deleted = false and  A.role.id = 1")
     List<AuthUser> findAllUser();
+
+    @Query(value = "select * from auth_user where id = :id and not is_deleted", nativeQuery = true)
+    AuthUser getAuthUser(@Param("id") Long id);
 
     /*@Query(value = "select * from etm_b4.auth_user where  organization_id = :id and not is_deleted ",nativeQuery = true)
     List<AuthUser> getAllByOrgId(@Param("id") Long id);*/

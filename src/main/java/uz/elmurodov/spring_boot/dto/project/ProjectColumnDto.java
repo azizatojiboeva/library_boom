@@ -13,7 +13,6 @@ import java.util.List;
  */
 @Setter
 @Getter
-
 public class ProjectColumnDto extends GenericDto {
     private String name;
     private List<TaskDto> tasks;
